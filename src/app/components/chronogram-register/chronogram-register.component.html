@@ -1,0 +1,66 @@
+<div class="container divFather">
+    <div>
+        <form novalidate (ngSubmit)="onSubmit()" [formGroup]="chronogramRegister">
+
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="comision">Comision de servicio</label>
+                    <input type="text" class="form-control" id="comision" placeholder="Comision de servicio" formControlName="nameService">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="destination">Destino</label>
+                    <input type="text" class="form-control" id="destination" placeholder="Destino" formControlName="destination">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="initialDate">Fecha de inicio</label>
+                    <input type="date" class="form-control" id="initialDate" formControlName="initialDate">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="finalDate">Fecha de fin</label>
+                    <input type="date" class="form-control" id="finalDate" formControlName="finalDate">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="lodging">Hospedaje</label>
+                    <input type="text" class="form-control" id="lodging" formControlName="lodging">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="days">Dias</label>
+                    <input type="text" class="form-control" id="days" formControlName="days">
+                </div>
+            </div>
+
+            <div class="test">
+                <button type="submit" class="btn btn-primary">Continuar</button>
+            </div>
+        </form>
+    </div>
+    <br>
+    <div>
+        <form novalidate (ngSubmit)="onSubmitActivities()" [formGroup]="chronogramDatail">
+
+            <div class="form-group col-md-1">
+                <label for="comision">Día</label>
+                <input type="text" class="form-control" id="day" formControlName="day">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="destination">Actividades</label>
+                <input type="text" class="form-control" id="activity_1" formControlName="activity1">
+            </div>
+            <div class="form-group col-md-4">
+                <input type="text" class="form-control" id="activity_2" formControlName="activity2">
+            </div>
+            <div class="form-group col-md-4">
+                <input type="text" class="form-control" id="activity_3" formControlName="activity3">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Agregar</button>
+        </form>
+    </div>
+    <div>
+
+    </div>
+</div>
