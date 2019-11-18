@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { CommonService } from '../../services/common.service';
 
 @Component({
   selector: 'app-chronogram-register',
@@ -8,25 +9,28 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class ChronogramRegisterComponent implements OnInit {
 
+  employeeName = '';
+  minings: any;
   chronogramRegister: FormGroup;
   chronogramDatail: FormGroup;
   request: any = {
     commissioner: {
-      employeeCode: 'asdasd'
+      employeeCode: ''
     },
     chronogram: {},
     chronogramDatails: []
   };
 
-  constructor() { }
+  constructor(private commonService: CommonService) { }
 
   ngOnInit() {
+    this.obtainCodeEmployee();
+    this.obtainMinings();
     this.chronogramRegister = new FormGroup({
       nameService: new FormControl(''),
-      destination: new FormControl(''),
+      miningCode: new FormControl(''),
       initialDate: new FormControl(''),
       finalDate: new FormControl(''),
-      lodging: new FormControl(''),
       days: new FormControl('')
     });
 
@@ -50,6 +54,17 @@ export class ChronogramRegisterComponent implements OnInit {
   createTemporalActivitie() {
     const temp = document.createElement('input');
     temp.setAttribute('type', 'text');
+  }
+
+  obtainMinings() {
+    this.commonService.findMinings().subscribe(data => {
+      this.minings = data.minings;
+    });
+  }
+
+  obtainCodeEmployee() {
+    this.employeeName = localStorage.getItem('empName');
+    this.request.commissioner.employeeCode =  localStorage.getItem('empCode');
   }
 
 }

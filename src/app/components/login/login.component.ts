@@ -27,16 +27,22 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     this.loginService.login(this.login.value).subscribe(data => {
-      this.viewMainMenu(data.status);
+      this.viewMainMenu(data);
     });
   }
 
-  viewMainMenu(status: string) {
-    if (status === '0') {
+  viewMainMenu(data: any) {
+    if (data.status === '0') {
+      this.saveTemporalInformation(data);
       this.router.navigate(['/mainmenu']);
     } else {
       this.userInvalid = true;
     }
+  }
+
+  saveTemporalInformation(data: any) {
+    localStorage.setItem('empCode', data.employeeCode);
+    localStorage.setItem('empName', data.employeeFullName);
   }
 
 }

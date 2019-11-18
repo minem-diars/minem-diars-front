@@ -11,7 +11,7 @@ export class ProgramConsultComponent implements OnInit {
 
   codeOfUser: FormGroup;
 
-  chronograms: any = [];
+  programs: any = [];
   employeeName = 'nombre de empleado';
 
   constructor(private programService: ProgramService) { }
@@ -27,7 +27,7 @@ export class ProgramConsultComponent implements OnInit {
     const employeeCode = this.codeOfUser.value.userCode;
     this.programService.consultProgram(employeeCode).subscribe( data => {
       console.log(data);
-      this.chronograms = data.chronograms;
+      this.programs = data.programs;
       this.employeeName = data.employeeName;
     });
 

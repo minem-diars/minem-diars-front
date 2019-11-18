@@ -6,6 +6,7 @@ import { HomeComponent } from './components/home/home.component';
 import { MainMenuComponent } from './components/main-menu/main-menu.component';
 import { ChronogramRegisterComponent } from './components/chronogram-register/chronogram-register.component';
 import { ChronogramConsultComponent } from './components/chronogram-consult/chronogram-consult.component';
+import { ProgramConsultComponent } from './components/program-consult/program-consult.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -14,6 +15,7 @@ const routes: Routes = [
   {path: 'mainmenu', component: MainMenuComponent},
   {path: 'chronogram/register', component: ChronogramRegisterComponent},
   {path: 'chronogram/consult', component: ChronogramConsultComponent},
+  {path: 'program/consult', component: ProgramConsultComponent}
 
 ];
 

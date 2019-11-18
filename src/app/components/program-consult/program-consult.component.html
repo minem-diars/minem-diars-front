@@ -21,16 +21,16 @@
             <tr>
                 <th scope="col">Código</th>
                 <th scope="col">Entidad Minera</th>
-                <th scope="col">Fecha de inicio</th>
-                <th scope="col">Fecha de fin</th>
+                <th scope="col">Viaticos</th>
+                <th scope="col">Estado</th>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let chronogram of chronograms">
-                <th scope="row">{{chronogram.chronogramCode}}</th>
-                <td>{{chronogram.miningEntity}}</td>
-                <td>{{chronogram.initialDate}}</td>
-                <td>{{chronogram.finalDate}}</td>
+            <tr *ngFor="let program of programs">
+                <th scope="row">{{program.programCode}}</th>
+                <td>{{program.miningEntity}}</td>
+                <td>{{program.viaticFlag | state:'v'}}</td>
+                <td>{{program.state | state:'p'}}</td>
             </tr>
         </tbody>
     </table>

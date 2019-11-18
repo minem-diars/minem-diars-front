@@ -12,6 +12,7 @@ import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { ChronogramRegisterComponent } from './components/chronogram-register/chronogram-register.component';
 import { ChronogramConsultComponent } from './components/chronogram-consult/chronogram-consult.component';
 import { ProgramConsultComponent } from './components/program-consult/program-consult.component';
+import { StatePipe } from './pipes/state.pipe';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ProgramConsultComponent } from './components/program-consult/program-co
     NavbarComponent,
     ChronogramRegisterComponent,
     ChronogramConsultComponent,
-    ProgramConsultComponent
+    ProgramConsultComponent,
+    StatePipe
   ],
   imports: [
     BrowserModule,
