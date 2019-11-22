@@ -1,6 +1,7 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CommonService } from '../../services/common.service';
+import { ChronogramService } from '../../services/chronogram.service';
 
 @Component({
   selector: 'app-chronogram-register',
@@ -9,7 +10,7 @@ import { CommonService } from '../../services/common.service';
 })
 export class ChronogramRegisterComponent implements OnInit {
 
-  @Output() sendList: any;
+  public sendList: any;
 
   numberDay = 0;
   isContinue = false;
@@ -25,9 +26,8 @@ export class ChronogramRegisterComponent implements OnInit {
     chronogramDatails: []
   };
 
-  temporalReq: any = {};
-
-  constructor(private commonService: CommonService) { }
+  constructor(private commonService: CommonService,
+              private chronogramService: ChronogramService) { }
 
   ngOnInit() {
     this.obtainCodeEmployee();
@@ -42,7 +42,7 @@ export class ChronogramRegisterComponent implements OnInit {
 
     this.chronogramDatail = new FormGroup({
       day: new FormControl(''),
-      activity1: new FormControl('')
+      activities: new FormControl('')
     });
   }
 
@@ -54,15 +54,11 @@ export class ChronogramRegisterComponent implements OnInit {
   }
 
   onSubmitActivities() {
-    this.temporalReq = this.chronogramDatail.value;
+    this.chronogramDatail.value.day = this.numberDay;
     this.validateDays(parseInt(this.request.chronogram.days, 10), this.numberDay);
-    
-    console.log(this.chronogramDatail.value);
-  }
-
-  createTemporalActivitie() {
-    const temp = document.createElement('input');
-    temp.setAttribute('type', 'text');
+    this.request.chronogramDatails.push(this.chronogramDatail.value);
+    this.sendList = this.request.chronogramDatails;
+    // this.registerChronogram(this.isContinue);
   }
 
   obtainMinings() {
@@ -81,6 +77,14 @@ export class ChronogramRegisterComponent implements OnInit {
       this.numberDay = day + 1;
     } else {
       this.isContinue = false;
+    }
+  }
+
+  registerChronogram(flag: boolean) {
+    if (flag === false) {
+      this.chronogramService.registerChronogram(this.request).subscribe(data => {
+        console.log(data);
+      });
     }
   }
 

@@ -17,4 +17,10 @@ export class ChronogramService {
     return this.http.get(consultUrl + employeeCode);
   }
 
+  /* Regsitrar cronograma */
+  public registerChronogram(request: any): Observable<any> {
+    const registertUrl = this.envUrl + 'register';
+    return this.http.post(registertUrl, request);
+  }
+
 }

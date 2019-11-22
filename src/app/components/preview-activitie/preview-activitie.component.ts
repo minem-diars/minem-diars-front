@@ -7,9 +7,9 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class PreviewActivitieComponent implements OnInit {
 
-  @Input() recieveList: any;
+  @Input() reviceList: any;
 
-  chronogramActivities: any = [];
+  chronogramActivities: any;
 
   constructor() { }
 

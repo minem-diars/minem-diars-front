@@ -1,68 +1,70 @@
 <div class="container divFather">
-    <div>
-        <form novalidate (ngSubmit)="onSubmit()" [formGroup]="chronogramRegister">
+    <div class="row">
+        <div class="col-md-6">
+            <form novalidate (ngSubmit)="onSubmit()" [formGroup]="chronogramRegister">
 
-            <div class="form-row">
-                <div class="form-group col-md-4">
-                    <label for="days">Empleado</label>
-                    <input type="text" disabled="true" class="form-control" id="employeeName" [placeholder]="employeeName">
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="days">Empleado</label>
+                        <input type="text" disabled="true" class="form-control" id="employeeName" [placeholder]="employeeName">
+                    </div>
                 </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-4">
-                    <label for="comision">Comision de servicio</label>
-                    <input type="text" class="form-control" id="comision" placeholder="Comision de servicio" formControlName="nameService">
-                </div>
-                <div class="form-group col-md-2">
-                    <label for="destination">Entidad minera</label>
-                    <select class="form-control" id="mining" formControlName="miningCode">
-                        <option *ngFor="let mining of minings" [value]="mining.code">{{mining.name}}</option>
-                    </select>
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-4">
-                    <label for="initialDate">Fecha de inicio</label>
-                    <input type="date" class="form-control" id="initialDate" formControlName="initialDate">
-                </div>
-                <div class="form-group col-md-2">
-                    <label for="finalDate">Fecha de fin</label>
-                    <input type="date" class="form-control" id="finalDate" formControlName="finalDate">
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-4">
-                    <label for="days">Dias</label>
-                    <input type="text" class="form-control" id="days" formControlName="days">
-                </div>
-            </div>
-
-            <div class="test">
-                <button type="submit" class="btn btn-primary">Continuar</button>
-            </div>
-        </form>
-
-        <br>
-        <div *ngIf="isContinue">
-            <form novalidate (ngSubmit)="onSubmitActivities()" [formGroup]="chronogramDatail">
-
-                <div class=form-row>
-                    <div class="form-group col-md-1">
-                        <label for="comision">Día</label>
-                        <input type="text" class="form-control" id="day" formControlName="day" [placeholder]="numberDay" disabled="true">
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="comision">Comision de servicio</label>
+                        <input type="text" class="form-control" id="comision" placeholder="Comision de servicio" formControlName="nameService">
                     </div>
                     <div class="form-group col-md-4">
-                        <label for="destination">Actividades</label>
-                        <input type="text" class="form-control" id="activity_1" formControlName="activity1">
+                        <label for="destination">Entidad minera</label>
+                        <select class="form-control" id="mining" formControlName="miningCode">
+                            <option *ngFor="let mining of minings" [value]="mining.code">{{mining.name}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="initialDate">Fecha de inicio</label>
+                        <input type="date" class="form-control" id="initialDate" formControlName="initialDate">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="finalDate">Fecha de fin</label>
+                        <input type="date" class="form-control" id="finalDate" formControlName="finalDate">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="days">Dias</label>
+                        <input type="text" class="form-control" id="days" formControlName="days">
                     </div>
                 </div>
 
-                <button type="submit" class="btn btn-primary">Agregar</button>
+                <div class="test">
+                    <button type="submit" class="btn btn-primary">Continuar</button>
+                </div>
             </form>
-        </div>
-    </div>
 
-    <div>
-        <app-preview-activitie></app-preview-activitie>
+            <br>
+            <div *ngIf="isContinue">
+                <form novalidate (ngSubmit)="onSubmitActivities()" [formGroup]="chronogramDatail">
+
+                    <div class=form-row>
+                        <div class="form-group col-md-1">
+                            <label for="comision">Día</label>
+                            <input type="text" class="form-control" id="day" formControlName="day" [value]="numberDay" disabled="true">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="destination">Actividades</label>
+                            <input type="text" class="form-control" id="activity_1" formControlName="activities">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Agregar</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <app-preview-activitie [reviceList]="sendList"></app-preview-activitie>
+        </div>
     </div>
 </div>
