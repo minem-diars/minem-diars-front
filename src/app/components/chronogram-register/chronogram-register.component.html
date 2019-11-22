@@ -13,7 +13,7 @@
                     <label for="comision">Comision de servicio</label>
                     <input type="text" class="form-control" id="comision" placeholder="Comision de servicio" formControlName="nameService">
                 </div>
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-2">
                     <label for="destination">Entidad minera</label>
                     <select class="form-control" id="mining" formControlName="miningCode">
                         <option *ngFor="let mining of minings" [value]="mining.code">{{mining.name}}</option>
@@ -25,7 +25,7 @@
                     <label for="initialDate">Fecha de inicio</label>
                     <input type="date" class="form-control" id="initialDate" formControlName="initialDate">
                 </div>
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-2">
                     <label for="finalDate">Fecha de fin</label>
                     <input type="date" class="form-control" id="finalDate" formControlName="finalDate">
                 </div>
@@ -41,30 +41,28 @@
                 <button type="submit" class="btn btn-primary">Continuar</button>
             </div>
         </form>
+
+        <br>
+        <div *ngIf="isContinue">
+            <form novalidate (ngSubmit)="onSubmitActivities()" [formGroup]="chronogramDatail">
+
+                <div class=form-row>
+                    <div class="form-group col-md-1">
+                        <label for="comision">Día</label>
+                        <input type="text" class="form-control" id="day" formControlName="day" [placeholder]="numberDay" disabled="true">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="destination">Actividades</label>
+                        <input type="text" class="form-control" id="activity_1" formControlName="activity1">
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Agregar</button>
+            </form>
+        </div>
     </div>
-    <br>
+
     <div>
-        <form novalidate (ngSubmit)="onSubmitActivities()" [formGroup]="chronogramDatail">
-
-            <div class="form-group col-md-1">
-                <label for="comision">Día</label>
-                <input type="text" class="form-control" id="day" formControlName="day">
-            </div>
-            <div class="form-group col-md-4">
-                <label for="destination">Actividades</label>
-                <input type="text" class="form-control" id="activity_1" formControlName="activity1">
-            </div>
-            <div class="form-group col-md-4">
-                <input type="text" class="form-control" id="activity_2" formControlName="activity2">
-            </div>
-            <div class="form-group col-md-4">
-                <input type="text" class="form-control" id="activity_3" formControlName="activity3">
-            </div>
-
-            <button type="submit" class="btn btn-primary">Agregar</button>
-        </form>
-    </div>
-    <div>
-
+        <app-preview-activitie></app-preview-activitie>
     </div>
 </div>

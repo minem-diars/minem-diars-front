@@ -13,9 +13,9 @@ const routes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'login', component: LoginComponent},
   {path: 'mainmenu', component: MainMenuComponent},
-  {path: 'chronogram/register', component: ChronogramRegisterComponent},
-  {path: 'chronogram/consult', component: ChronogramConsultComponent},
-  {path: 'program/consult', component: ProgramConsultComponent}
+  {path: 'mainmenu/chronogram/register', component: ChronogramRegisterComponent},
+  {path: 'mainmenu/chronogram/consult', component: ChronogramConsultComponent},
+  {path: 'mainmenu/program/consult', component: ProgramConsultComponent}
 
 ];
 

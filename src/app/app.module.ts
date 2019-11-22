@@ -13,6 +13,7 @@ import { ChronogramRegisterComponent } from './components/chronogram-register/ch
 import { ChronogramConsultComponent } from './components/chronogram-consult/chronogram-consult.component';
 import { ProgramConsultComponent } from './components/program-consult/program-consult.component';
 import { StatePipe } from './pipes/state.pipe';
+import { PreviewActivitieComponent } from './components/preview-activitie/preview-activitie.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { StatePipe } from './pipes/state.pipe';
     ChronogramRegisterComponent,
     ChronogramConsultComponent,
     ProgramConsultComponent,
-    StatePipe
+    StatePipe,
+    PreviewActivitieComponent
   ],
   imports: [
     BrowserModule,
