@@ -16,9 +16,12 @@ export class ProgramConsultComponent implements OnInit {
   programs: any = [];
   employeeName = 'nombre de empleado';
 
+  varCPV = '';
+
   constructor(private programService: ProgramService) { }
 
   ngOnInit() {
+    this.varCPV = localStorage.getItem('tempCPV');
     this.fRole = localStorage.getItem('empRole');
     this.codeOfUser = new FormGroup({
       userCode: new FormControl('')

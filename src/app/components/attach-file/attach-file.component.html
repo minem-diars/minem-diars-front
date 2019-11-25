@@ -1,0 +1,65 @@
+<app-navbar [role]="fRole"></app-navbar>
+<div class="container divFather">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                    <label for="programacion">Programación</label>
+                    <input type="text" disabled="true" class="form-control" id="programacion" [value]="programCodeRoute">
+                </div>
+                <div class="form-group col-md-7">
+                    <label for="searchprogram">&nbsp;</label>
+                    <div class="myBut">
+                        <button type="button" id="searchprogram" class="btn btn-secondary" [routerLink]="['/home/program/consult']">Buscar programacion</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="form-row">
+                <div class="form-group col-md-5">
+                    <label for="comisionado">Comisionado</label>
+                    <input type="text" class="form-control" id="comisionado" disabled="true" [value]="employeeName">
+                </div>
+            </div>
+            <div>
+                <div class="form-row">
+                    <div class="form-group col-md-5">
+                        <label for="entidad_minera">Entidad minera</label>
+                        <input type="text" class="form-control" id="entidad_minera" disabled="true" [value]="miningName">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="exampleFormControlFile1">Adjuntar documentos de sustento</label>
+        <div class="col-sm-9">
+            <span class="btn btn-default btn-file">
+                <input id="exampleFormControlFile1" (change)="attachFiles($event.target.files)" type="file" class="form-control-file" multiple data-show-upload="true" data-show-caption="true">
+            </span>
+        </div>
+    </div>
+    <input type="button" (click)="getDataTable(filesUploaded)" value="CARGAR">
+    <input type="text" id="asd">
+    <div>
+        <table class="table" id="dataFiles">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Nombre de archivo</th>
+                    <th>Titulo de enlace</th>
+                    <th>Adjuntar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let file of filesUploaded">
+                    <th>{{file.name}}</th>
+                    <td>
+                        <input type="text" id="{{file.name}}">
+                    </td>
+                    <td>Mark</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

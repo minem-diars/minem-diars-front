@@ -30,6 +30,7 @@ export class ProgramEvaluateComponent implements OnInit {
               private programService: ProgramService) { }
 
   ngOnInit() {
+    localStorage.setItem('tempCPV', '0');
     this.fRole = localStorage.getItem('empRole');
     this.programCodeRoute = parseInt(this.route.snapshot.paramMap.get('programCode'), 10);
     this.validateNanValue(this.programCodeRoute);
@@ -48,13 +49,23 @@ export class ProgramEvaluateComponent implements OnInit {
   disapproveProgram() {
     this.request.programCode = this.programEvaluate.value.programCode;
     this.request.state = 1;
-    this.sendUpdateState(this.request);
+    if (this.request.programCode !== 0) {
+      this.sendUpdateState(this.request);
+    } else {
+      this.error = 'Para poder desaprobar debe seleccionar una programación.';
+      document.getElementById('modalToErrorButton').click();
+    }
   }
 
   approveProgram() {
     this.request.programCode = this.programEvaluate.value.programCode;
     this.request.state = 0;
-    this.sendUpdateState(this.request);
+    if (this.request.programCode !== 0) {
+      this.sendUpdateState(this.request);
+    } else {
+      this.error = 'Para poder aprobar debe seleccionar una programación.';
+      document.getElementById('modalToErrorButton').click();
+    }
   }
 
   findProgram(programCode: number) {
@@ -88,5 +99,16 @@ export class ProgramEvaluateComponent implements OnInit {
       }
     });
   }
+
+  validateWithModal() {
+    this.programCodeRoute = 0;
+    this.programEvaluate.reset();
+    this.programEvaluate.get('programCode').setValue(this.programCodeRoute);
+    this.miningEnt = '';
+    this.empFullName = '';
+    this.viatics = '';
+    this.tDays = '';
+  }
+
 
 }

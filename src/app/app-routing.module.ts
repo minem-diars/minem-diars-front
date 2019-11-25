@@ -8,6 +8,7 @@ import { ChronogramConsultComponent } from './components/chronogram-consult/chro
 import { ProgramConsultComponent } from './components/program-consult/program-consult.component';
 import { ProgramRegisterComponent } from './components/program-register/program-register.component';
 import { ProgramEvaluateComponent } from './components/program-evaluate/program-evaluate.component';
+import { AttachFileComponent } from './components/attach-file/attach-file.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
@@ -19,7 +20,9 @@ const routes: Routes = [
   {path: 'home/program/register', component: ProgramRegisterComponent},
   {path: 'home/program/register/:chronogramCode', component: ProgramRegisterComponent},
   {path: 'home/program/evaluate', component: ProgramEvaluateComponent},
-  {path: 'home/program/evaluate/:programCode', component: ProgramEvaluateComponent}
+  {path: 'home/program/evaluate/:programCode', component: ProgramEvaluateComponent},
+  {path: 'home/livelihood/attach', component: AttachFileComponent},
+  {path: 'home/livelihood/attach/:programCode', component: AttachFileComponent}
 
 ];
 

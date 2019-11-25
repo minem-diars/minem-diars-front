@@ -16,6 +16,7 @@ import { StatePipe } from './pipes/state.pipe';
 import { PreviewActivitieComponent } from './components/preview-activitie/preview-activitie.component';
 import { ProgramRegisterComponent } from './components/program-register/program-register.component';
 import { ProgramEvaluateComponent } from './components/program-evaluate/program-evaluate.component';
+import { AttachFileComponent } from './components/attach-file/attach-file.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { ProgramEvaluateComponent } from './components/program-evaluate/program-
     StatePipe,
     PreviewActivitieComponent,
     ProgramRegisterComponent,
-    ProgramEvaluateComponent
+    ProgramEvaluateComponent,
+    AttachFileComponent
   ],
   imports: [
     BrowserModule,
