@@ -1,3 +1,4 @@
+<app-navbar [role]="fRole"></app-navbar>
 <div class="container divFather">
     <div class="row">
         <div class="col-md-6">
@@ -10,11 +11,11 @@
                     </div>
                 </div>
                 <div class="form-row">
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-5">
                         <label for="comision">Comision de servicio</label>
                         <input type="text" class="form-control" id="comision" placeholder="Comision de servicio" formControlName="nameService">
                     </div>
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-5">
                         <label for="destination">Entidad minera</label>
                         <select class="form-control" id="mining" formControlName="miningCode">
                             <option *ngFor="let mining of minings" [value]="mining.code">{{mining.name}}</option>
@@ -22,24 +23,24 @@
                     </div>
                 </div>
                 <div class="form-row">
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-5">
                         <label for="initialDate">Fecha de inicio</label>
                         <input type="date" class="form-control" id="initialDate" formControlName="initialDate">
                     </div>
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-5">
                         <label for="finalDate">Fecha de fin</label>
                         <input type="date" class="form-control" id="finalDate" formControlName="finalDate">
                     </div>
                 </div>
                 <div class="form-row">
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-5">
                         <label for="days">Dias</label>
                         <input type="text" class="form-control" id="days" formControlName="days">
                     </div>
                 </div>
 
-                <div class="test">
-                    <button type="submit" class="btn btn-primary">Continuar</button>
+                <div class="myBut">
+                    <button type="submit" class="btn btn-primary" [disabled]="chronogramRegister.invalid">Continuar</button>
                 </div>
             </form>
 
@@ -52,19 +53,76 @@
                             <label for="comision">Día</label>
                             <input type="text" class="form-control" id="day" formControlName="day" [value]="numberDay" disabled="true">
                         </div>
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-9">
                             <label for="destination">Actividades</label>
                             <input type="text" class="form-control" id="activity_1" formControlName="activities">
                         </div>
                     </div>
 
-                    <button type="submit" class="btn btn-primary">Agregar</button>
+                    <div class="myBut">
+                        <button type="submit" class="btn btn-primary">{{buttonState}}</button>
+                    </div>
+
+
+
                 </form>
             </div>
+
+            <button id="modalRegisterButton" type="button" [hidden]="true" class="btn btn-primary" data-toggle="modal" data-target="#modalRegister">
+                Modal de registro
+            </button>
+            <br>
+            <button id="modalToErrorButton" type="button" [hidden]="true" class="btn btn-primary" data-toggle="modal" data-target="#modalToError">
+                Modal de Error
+            </button>
         </div>
 
         <div class="col-md-6">
             <app-preview-activitie [reviceList]="sendList"></app-preview-activitie>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- Modal to Register -->
+<div class="modal fade" id="modalRegister" tabindex="-1" role="dialog" aria-labelledby="modalRegisterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Registrar cronograma</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+            </div>
+            <div class="modal-body">
+                {{backResponse.message}}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="validateWithModal()">Registrar otro cronograma</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" routerLink="/home">Volver al home</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal to Error -->
+<div class="modal fade" id="modalToError" tabindex="-1" role="dialog" aria-labelledby="modalToErrorTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Alerta de error</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+            </div>
+            <div class="modal-body">
+                {{error}}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
         </div>
     </div>
 </div>

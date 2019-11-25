@@ -11,10 +11,28 @@ export class ProgramService {
 
   constructor(private http: HttpClient) { }
 
-  /* Coonsultar programacion */
-  public consultProgram(employeeCode: number): Observable<any> {
+  /* Coonsultar programaciones */
+  public consultPrograms(employeeCode: number, userRole: string): Observable<any> {
     const consultUrl = this.envUrl + 'consult/';
-    return this.http.get(consultUrl + employeeCode);
+    return this.http.get(consultUrl + employeeCode + '/' + userRole);
+  }
+
+  /* Coonsultar programacion */
+  public consultProgram(programCode: number): Observable<any> {
+    const consultUrl = this.envUrl + 'consult/evaluate/';
+    return this.http.get(consultUrl + programCode);
+  }
+
+  /* Registrar programacion */
+  public registerProgram(request: any): Observable<any> {
+    const registertUrl = this.envUrl + 'register';
+    return this.http.post(registertUrl, request);
+  }
+
+  /* Actualizar estado de programacion */
+  public updateProgramState(request: any): Observable<any> {
+    const registertUrl = this.envUrl + 'update/state';
+    return this.http.post(registertUrl, request);
   }
 
 }

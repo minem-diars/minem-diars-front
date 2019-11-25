@@ -7,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainMenuComponent implements OnInit {
 
+  fRole: string;
+
   constructor() { }
 
   ngOnInit() {
+    this.fRole = localStorage.getItem('empRole');
   }
 
 }

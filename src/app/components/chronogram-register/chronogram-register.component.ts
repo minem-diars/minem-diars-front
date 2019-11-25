@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { CommonService } from '../../services/common.service';
 import { ChronogramService } from '../../services/chronogram.service';
 
@@ -10,7 +10,9 @@ import { ChronogramService } from '../../services/chronogram.service';
 })
 export class ChronogramRegisterComponent implements OnInit {
 
-  public sendList: any;
+  fRole: string;
+
+  public sendList = [];
 
   numberDay = 0;
   isContinue = false;
@@ -26,31 +28,43 @@ export class ChronogramRegisterComponent implements OnInit {
     chronogramDatails: []
   };
 
-  constructor(private commonService: CommonService,
+  buttonState = 'Agregar';
+
+  backResponse: any = {};
+  error = '';
+
+  constructor(private formBuilder: FormBuilder,
+              private commonService: CommonService,
               private chronogramService: ChronogramService) { }
 
   ngOnInit() {
+    this.fRole = localStorage.getItem('empRole');
     this.obtainCodeEmployee();
     this.obtainMinings();
-    this.chronogramRegister = new FormGroup({
-      nameService: new FormControl(''),
-      miningCode: new FormControl(''),
-      initialDate: new FormControl(''),
-      finalDate: new FormControl(''),
-      days: new FormControl('')
+    this.chronogramRegister = this.formBuilder.group({
+      nameService: new FormControl('', Validators.required),
+      miningCode: new FormControl('', Validators.required),
+      initialDate: new FormControl('', Validators.required),
+      finalDate: new FormControl('', Validators.required),
+      days: new FormControl('', Validators.required)
     });
 
-    this.chronogramDatail = new FormGroup({
+    this.chronogramDatail = this.formBuilder.group({
       day: new FormControl(''),
-      activities: new FormControl('')
+      activities: new FormControl('', Validators.required)
     });
   }
 
   onSubmit() {
     this.request.chronogram = this.chronogramRegister.value;
-    this.validateDays(parseInt(this.request.chronogram.days, 10), 0);
-    this.isContinue = true;
-    console.log(this.request);
+    const daysParse = parseInt(this.request.chronogram.days, 10);
+    if (!isNaN(daysParse)) {
+      this.validateDays(daysParse, 0);
+      this.isContinue = true;
+    } else {
+      this.error = 'Debe ingresar un número de dias.';
+      document.getElementById('modalToErrorButton').click();
+    }
   }
 
   onSubmitActivities() {
@@ -58,7 +72,8 @@ export class ChronogramRegisterComponent implements OnInit {
     this.validateDays(parseInt(this.request.chronogram.days, 10), this.numberDay);
     this.request.chronogramDatails.push(this.chronogramDatail.value);
     this.sendList = this.request.chronogramDatails;
-    // this.registerChronogram(this.isContinue);
+    this.chronogramDatail.reset();
+    this.registerChronogram(this.isContinue);
   }
 
   obtainMinings() {
@@ -74,6 +89,9 @@ export class ChronogramRegisterComponent implements OnInit {
 
   validateDays(days: number, day: number) {
     if (days > day) {
+      if  (day === days - 1) {
+        this.buttonState = 'Registrar';
+      }
       this.numberDay = day + 1;
     } else {
       this.isContinue = false;
@@ -83,9 +101,17 @@ export class ChronogramRegisterComponent implements OnInit {
   registerChronogram(flag: boolean) {
     if (flag === false) {
       this.chronogramService.registerChronogram(this.request).subscribe(data => {
+        this.backResponse = data;
+        document.getElementById('modalRegisterButton').click();
         console.log(data);
       });
     }
+  }
+
+  validateWithModal() {
+    this.chronogramRegister.reset();
+    this.chronogramDatail.reset();
+    this.sendList.splice(0, this.sendList.length);
   }
 
 }

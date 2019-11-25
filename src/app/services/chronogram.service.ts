@@ -11,13 +11,19 @@ export class ChronogramService {
 
   constructor(private http: HttpClient) { }
 
-  /* Consultar cronograma */
-  public consultChronogram(employeeCode: number): Observable<any> {
+  /* Consultar cronogramas */
+  public consultChronograms(employeeCode: number): Observable<any> {
     const consultUrl = this.envUrl + 'consult/';
     return this.http.get(consultUrl + employeeCode);
   }
 
-  /* Regsitrar cronograma */
+  /* Consultar cronograma */
+  public consultChronogram(chronogramCode: number): Observable<any> {
+    const consultUrl = this.envUrl + 'consult/findone/';
+    return this.http.get(consultUrl + chronogramCode);
+  }
+
+  /* Registrar cronograma */
   public registerChronogram(request: any): Observable<any> {
     const registertUrl = this.envUrl + 'register';
     return this.http.post(registertUrl, request);

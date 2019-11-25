@@ -14,6 +14,8 @@ import { ChronogramConsultComponent } from './components/chronogram-consult/chro
 import { ProgramConsultComponent } from './components/program-consult/program-consult.component';
 import { StatePipe } from './pipes/state.pipe';
 import { PreviewActivitieComponent } from './components/preview-activitie/preview-activitie.component';
+import { ProgramRegisterComponent } from './components/program-register/program-register.component';
+import { ProgramEvaluateComponent } from './components/program-evaluate/program-evaluate.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { PreviewActivitieComponent } from './components/preview-activitie/previe
     ChronogramConsultComponent,
     ProgramConsultComponent,
     StatePipe,
-    PreviewActivitieComponent
+    PreviewActivitieComponent,
+    ProgramRegisterComponent,
+    ProgramEvaluateComponent
   ],
   imports: [
     BrowserModule,

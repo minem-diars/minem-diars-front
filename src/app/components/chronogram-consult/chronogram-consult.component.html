@@ -1,3 +1,4 @@
+<app-navbar [role]="fRole"></app-navbar>
 <div class="container">
     <div>
         <form novalidate (ngSubmit)="findDataByCode()" [formGroup]="codeOfUser">
@@ -23,6 +24,7 @@
                 <th scope="col">Entidad Minera</th>
                 <th scope="col">Fecha de inicio</th>
                 <th scope="col">Fecha de fin</th>
+                <th scope="col">Acción</th>
             </tr>
         </thead>
         <tbody>
@@ -31,6 +33,9 @@
                 <td>{{chronogram.miningEntity}}</td>
                 <td>{{chronogram.initialDate}}</td>
                 <td>{{chronogram.finalDate}}</td>
+                <td>
+                    <input type="button" class="btn btn-danger" routerLink="/home/program/register/{{chronogram.chronogramCode}}" value="Cargar">
+                </td>
             </tr>
         </tbody>
     </table>

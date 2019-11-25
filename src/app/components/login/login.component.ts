@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit() {
+    this.cleanTemporalInformation();
     this.login = new FormGroup({
       username: new FormControl('', [Validators.required, Validators.minLength(2)]),
       password: new FormControl('')
@@ -34,7 +35,7 @@ export class LoginComponent implements OnInit {
   viewMainMenu(data: any) {
     if (data.status === '0') {
       this.saveTemporalInformation(data);
-      this.router.navigate(['/mainmenu']);
+      this.router.navigate(['/home']);
     } else {
       this.userInvalid = true;
     }
@@ -43,6 +44,14 @@ export class LoginComponent implements OnInit {
   saveTemporalInformation(data: any) {
     localStorage.setItem('empCode', data.employeeCode);
     localStorage.setItem('empName', data.employeeFullName);
+    localStorage.setItem('empRole', data.userRol);
+    localStorage.setItem('empMessage', data.description);
+  }
+
+  cleanTemporalInformation() {
+    localStorage.removeItem('empCode');
+    localStorage.removeItem('empName');
+    localStorage.removeItem('empRole');
   }
 
 }

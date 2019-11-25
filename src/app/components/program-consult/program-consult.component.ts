@@ -9,6 +9,8 @@ import { FormGroup, FormControl } from '@angular/forms';
 })
 export class ProgramConsultComponent implements OnInit {
 
+  fRole: string;
+
   codeOfUser: FormGroup;
 
   programs: any = [];
@@ -17,20 +19,20 @@ export class ProgramConsultComponent implements OnInit {
   constructor(private programService: ProgramService) { }
 
   ngOnInit() {
+    this.fRole = localStorage.getItem('empRole');
     this.codeOfUser = new FormGroup({
       userCode: new FormControl('')
     });
   }
 
   findDataByCode() {
-    console.log(this.codeOfUser.value);
-    const employeeCode = this.codeOfUser.value.userCode;
-    this.programService.consultProgram(employeeCode).subscribe( data => {
-      console.log(data);
-      this.programs = data.programs;
-      this.employeeName = data.employeeName;
-    });
-
+    const employeeCode = parseInt(this.codeOfUser.value.userCode, 10);
+    if (!isNaN(employeeCode)) {
+      this.programService.consultPrograms(employeeCode, this.fRole).subscribe( data => {
+        this.programs = data.programs;
+        this.employeeName = data.employeeName;
+      });
+    }
   }
 
 }

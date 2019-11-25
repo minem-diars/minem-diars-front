@@ -21,6 +21,8 @@ export class StatePipe implements PipeTransform {
         return 'NO COSTEADO POR MINERA';
       } else if (value === 1) {
         return 'COSTEADO POR MINERA';
+      } else if (value === '') {
+        return '';
       }
     }
 

@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
+  fRole: string;
+  message: string;
+
   constructor() { }
 
   ngOnInit() {
+    this.fRole = localStorage.getItem('empRole');
+    this.message = localStorage.getItem('empMessage');
   }
 
 }

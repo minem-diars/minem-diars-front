@@ -1,0 +1,119 @@
+<app-navbar [role]="fRole"></app-navbar>
+<div class="container divFather">
+    <div class="divSon">
+        <form novalidate (ngSubmit)="onSubmit()" [formGroup]="programRegister">
+
+            <div class="form-row">
+                <div class="form-group col-md-2">
+                    <label for="cronograma">Cronograma</label>
+                    <input type="text" disabled="true" class="form-control" id="cronograma" formControlName="chronogramCode">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="entidad_minera">&nbsp;</label>
+                    <div class="myBut">
+                        <button type="submit " class="btn btn-primary" [routerLink]="['/home/chronogram/consult']">Buscar cronogramas</button>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                    <label for="entidad_minera">Entidad minera</label>
+                    <input type="text" class="form-control" id="entidad_minera" disabled="true" [value]="miningEnt">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="comisionado">Comisionado</label>
+                    <input type="text" class="form-control" id="comisionado" disabled="true" [value]="empFullName">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                    <label for="initialDate">Fecha de inicio</label>
+                    <input type="text" class="form-control" id="initialDate" disabled="true" [value]="initialDate">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="finalDate ">Fecha de fin</label>
+                    <input type="text" class="form-control" id="finalDate" disabled="true" [value]="finalDate">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-1">
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="viatics" (change)="changeWithCheck($event)" formControlName="viaticFlag">
+                    <label class="form-check-label" for="viatics">Viaticos financiado por minera</label>
+                </div>
+                <div class="form-group col-md-4">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-2">
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="lodging">Hospedaje</label>
+                    <input type="text" class="form-control" id="lodging" formControlName="lodgingCost">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-2">
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="transport">Transporte</label>
+                    <input type="text" class="form-control" id="transport" formControlName="transportCost">
+                </div>
+            </div>
+
+            <div class="buttonCont">
+                <button type="submit" class="btn btn-primary" [disabled]="programRegister.invalid || chronogramCodeRoute === 0">Continuar</button>
+            </div>
+        </form>
+        <button id="modalRegisterButton" type="button" [hidden]="true" class="btn btn-primary" data-toggle="modal" data-target="#modalRegister">
+            Modal de registro
+        </button>
+        <br>
+        <button id="modalToErrorButton" type="button" [hidden]="true" class="btn btn-primary" data-toggle="modal" data-target="#modalToError">
+            Modal de Error
+        </button>
+    </div>
+</div>
+
+
+<!-- Modal to Register -->
+<div class="modal fade" id="modalRegister" tabindex="-1" role="dialog" aria-labelledby="modalRegisterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Registrar cronograma</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+            </div>
+            <div class="modal-body">
+                {{backResponse.message}}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="validateWithModal()">Registrar otro cronograma</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" routerLink="/home">Volver al home</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal to Error -->
+<div class="modal fade" id="modalToError" tabindex="-1" role="dialog" aria-labelledby="modalToErrorTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Alerta de error</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+            </div>
+            <div class="modal-body">
+                {{error}}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
