@@ -37,7 +37,9 @@ export class ProgramService {
 
   public test(request: any): Observable<any> {
     const registertUrl = 'http://localhost:8080/travel/file/v1/upload';
-    return this.http.post(registertUrl, request);
+    const file: FormData = new FormData();
+    file.append('file', request[0]);
+    return this.http.post(registertUrl, file);
   }
 
 }

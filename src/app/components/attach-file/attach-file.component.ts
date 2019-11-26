@@ -50,15 +50,19 @@ export class AttachFileComponent implements OnInit {
     }
   }
 
-  getDataTable(evt: any) {
-    const mapReq = new Map<string, string>();
-    for (const index of evt) {
-      const key: any = document.getElementById(index.name);
-      mapReq.set(key.value, index);
-    }
-    console.log(mapReq);
-    this.programService.test(mapReq).subscribe( data => {
-    console.log('Enviado');
+  getDataTable(evt: Blob) {
+    // const mapReq = new Map<string, string>();
+    // for (const index of evt) {
+    //   const key: any = document.getElementById(index.name);
+    //   mapReq.set(key.value, index);
+    // }
+    console.log(evt);
+    // for ( const idx of evt) {
+    //   const key: any = document.getElementById(idx.name);
+    // }
+   
+    this.programService.test(evt).subscribe( data => {
+      console.log('Enviado');
     });
   }
 

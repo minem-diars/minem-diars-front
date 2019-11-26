@@ -57,20 +57,15 @@ export class ProgramRegisterComponent implements OnInit {
     }
 
     if (this.chronogramCodeRoute !== 0) {
-      const lodg = parseFloat(this.programRegister.value.lodgingCost);
-      const tran = parseFloat(this.programRegister.value.transportCost);
-      if (isNaN(lodg)) {
-        this.error = 'Debe ingresar un valor correcto en Hospedaje.';
-        document.getElementById('modalToErrorButton').click();
-      } else if (isNaN(tran)) {
-        this.error = 'Debe ingresar un valor correcto en Transporte.';
-        document.getElementById('modalToErrorButton').click();
-      } else {
         this.programService.registerProgram(this.programRegister.value).subscribe( data => {
-          this.backResponse.message = data.message;
-          document.getElementById('modalRegisterButton').click();
+          if (parseInt(data.status, 10) === 1) {
+            this.error = data.errorMessage;
+            document.getElementById('modalToErrorButton').click();
+          } else {
+            this.backResponse.message = data.message;
+            document.getElementById('modalRegisterButton').click();
+          }
         });
-      }
     }
   }
 
