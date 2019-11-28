@@ -50,20 +50,28 @@ export class AttachFileComponent implements OnInit {
     }
   }
 
-  getDataTable(evt: Blob) {
-    // const mapReq = new Map<string, string>();
-    // for (const index of evt) {
-    //   const key: any = document.getElementById(index.name);
-    //   mapReq.set(key.value, index);
-    // }
-    console.log(evt);
+  getDataTable(evt: any) {
+    const mapReq = new Map<string, Blob>();
+    for (const index of evt) {
+      const key: any = document.getElementById(index.name);
+      this.programService.test(this.programCodeRoute, key.value, index).subscribe( data => {
+        console.log(data);
+      });
+    }
     // for ( const idx of evt) {
     //   const key: any = document.getElementById(idx.name);
     // }
-   
-    this.programService.test(evt).subscribe( data => {
-      console.log('Enviado');
+  }
+
+  downloadData() {
+    this.programService.testD(1).subscribe( data => {
+      console.log(data);
     });
+  }
+
+  testD() {
+    const URL = 'http://localhost:8081/files/2consultar cronograma de viaje.jpeg';
+    window.open(URL);
   }
 
 }
