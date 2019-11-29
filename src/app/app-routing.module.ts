@@ -9,6 +9,8 @@ import { ProgramConsultComponent } from './components/program-consult/program-co
 import { ProgramRegisterComponent } from './components/program-register/program-register.component';
 import { ProgramEvaluateComponent } from './components/program-evaluate/program-evaluate.component';
 import { AttachFileComponent } from './components/attach-file/attach-file.component';
+import { RegisterTicketPurchaseComponent } from './components/register-ticket-purchase/register-ticket-purchase.component';
+import { EvaluateTicketPurchaseComponent } from './components/evaluate-ticket-purchase/evaluate-ticket-purchase.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
@@ -22,7 +24,9 @@ const routes: Routes = [
   {path: 'home/program/evaluate', component: ProgramEvaluateComponent},
   {path: 'home/program/evaluate/:programCode', component: ProgramEvaluateComponent},
   {path: 'home/livelihood/attach', component: AttachFileComponent},
-  {path: 'home/livelihood/attach/:programCode', component: AttachFileComponent}
+  {path: 'home/livelihood/attach/:programCode', component: AttachFileComponent},
+  {path: 'home/purchase/ticket/register', component: RegisterTicketPurchaseComponent},
+  {path: 'home/purchase/ticket/evaluate', component: EvaluateTicketPurchaseComponent}
 
 ];
 

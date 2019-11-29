@@ -1,0 +1,62 @@
+<app-navbar [role]="fRole"></app-navbar>
+<div class="container divFather">
+    <div class="divSon">
+        <form novalidate (ngSubmit)="onSubmit()" [formGroup]="purchaseTicketEvaluate">
+
+            <div class="form-row">
+                <div class="form-group col-md-2">
+                    <label for="cronograma">Programación</label>
+                    <input type="text" disabled="true" class="form-control" id="cronograma" [value]="programCodeRoute">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="entidad_minera">&nbsp;</label>
+                    <div class="myBut">
+                        <button type="submit " class="btn btn-secondary">Buscar programación</button>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                    <label for="entidad_minera">Entidad minera</label>
+                    <input type="text" class="form-control" id="entidad_minera" disabled="true" [value]="miningEnt">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="comisionado">Comisionado</label>
+                    <input type="text" class="form-control" id="comisionado" disabled="true" [value]="empFullName">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                    <label for="airline">Aerolinea</label>
+                    <input type="text" class="form-control" id="airline" disabled="true" [value]="airline">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="days">Dias</label>
+                    <input type="text" class="form-control" id="days" disabled="true" [value]="days">
+                </div>
+            </div>
+            <br>
+            <div class="form-row">
+                <div class="form-group col-md-1">
+                </div>
+                <div class="form-group col-md-3">
+                    <button type="button" class="btn btn-danger" (click)="approveProgram()">Autorizar</button>
+                </div>
+                <div class="form-group col-md-4">
+                    <button type="button" class="btn btn-danger" (click)="disapproveProgram()">Rechazar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <br>
+
+    <button id="modalRegisterButton" type="button" [hidden]="true" class="btn btn-primary" data-toggle="modal" data-target="#modalRegister">
+                Modal de registro
+            </button>
+    <br>
+    <button id="modalToErrorButton" type="button" [hidden]="true" class="btn btn-primary" data-toggle="modal" data-target="#modalToError">
+                Modal de Error
+            </button>
+
+</div>

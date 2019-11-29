@@ -17,6 +17,8 @@ import { PreviewActivitieComponent } from './components/preview-activitie/previe
 import { ProgramRegisterComponent } from './components/program-register/program-register.component';
 import { ProgramEvaluateComponent } from './components/program-evaluate/program-evaluate.component';
 import { AttachFileComponent } from './components/attach-file/attach-file.component';
+import { RegisterTicketPurchaseComponent } from './components/register-ticket-purchase/register-ticket-purchase.component';
+import { EvaluateTicketPurchaseComponent } from './components/evaluate-ticket-purchase/evaluate-ticket-purchase.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { AttachFileComponent } from './components/attach-file/attach-file.compon
     PreviewActivitieComponent,
     ProgramRegisterComponent,
     ProgramEvaluateComponent,
-    AttachFileComponent
+    AttachFileComponent,
+    RegisterTicketPurchaseComponent,
+    EvaluateTicketPurchaseComponent,
   ],
   imports: [
     BrowserModule,

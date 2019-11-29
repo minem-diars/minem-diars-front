@@ -58,9 +58,6 @@ export class AttachFileComponent implements OnInit {
         console.log(data);
       });
     }
-    // for ( const idx of evt) {
-    //   const key: any = document.getElementById(idx.name);
-    // }
   }
 
   downloadData() {

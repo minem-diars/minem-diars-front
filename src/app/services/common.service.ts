@@ -17,4 +17,10 @@ export class CommonService {
     return this.http.get(consultUrl);
   }
 
+  /* Obtener aerolineas */
+  public findAirlines(): Observable<any> {
+    const consultUrl = this.envUrl + 'consult/airlines';
+    return this.http.get(consultUrl);
+  }
+
 }
