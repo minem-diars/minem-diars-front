@@ -17,10 +17,59 @@
                     <input placeholder="Password" class="form-control" type="password" formControlName="password">
                 </label>
                 <br>
-                <button type="submit" class="btn btn-primary btn-block">Ingresar</button>
+                <button type="submit" class="btn btn-primary btn-block" [disabled]="login.invalid">Ingresar</button>
             </div>
         </form>
-        <div *ngIf="userInvalid">Datos invalidos.</div>
 
+    </div>
+
+
+</div>
+
+<button id="modalLoginButton" type="button" [hidden]="true" class="btn btn-primary" data-toggle="modal" data-target="#modalLogin">
+    Modal de Login
+</button>
+<br>
+<button id="modalToErrorButton" type="button" [hidden]="true" class="btn btn-primary" data-toggle="modal" data-target="#modalToError">
+    Modal de Error
+</button>
+
+<!-- Modal to Register -->
+<div class="modal fade" id="modalLogin" tabindex="-1" role="dialog" aria-labelledby="modalLoginTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Registrar cronograma</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+            </div>
+            <div class="modal-body">
+                {{backResponse.description}}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal" routerLink="/home">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal to Error -->
+<div class="modal fade" id="modalToError" tabindex="-1" role="dialog" aria-labelledby="modalToErrorTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Alerta de error</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+            </div>
+            <div class="modal-body">
+                {{error}}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
     </div>
 </div>

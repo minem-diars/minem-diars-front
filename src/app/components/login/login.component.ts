@@ -13,7 +13,9 @@ export class LoginComponent implements OnInit {
 
   login: FormGroup;
   response: any;
-  userInvalid = false;
+
+  backResponse: any = {};
+  error = '';
 
   constructor(private loginService: LoginService,
               private router: Router) { }
@@ -21,8 +23,8 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.cleanTemporalInformation();
     this.login = new FormGroup({
-      username: new FormControl('', [Validators.required, Validators.minLength(2)]),
-      password: new FormControl('')
+      username: new FormControl('', [Validators.required]),
+      password: new FormControl('', [Validators.required])
     });
   }
 
@@ -33,11 +35,13 @@ export class LoginComponent implements OnInit {
   }
 
   viewMainMenu(data: any) {
-    if (data.status === '0') {
+    if (parseInt(data.status, 10) === 0) {
       this.saveTemporalInformation(data);
-      this.router.navigate(['/home']);
+      this.backResponse.description = data.description;
+      document.getElementById('modalLoginButton').click();
     } else {
-      this.userInvalid = true;
+      this.error = data.errorMessage;
+      document.getElementById('modalToErrorButton').click();
     }
   }
 
