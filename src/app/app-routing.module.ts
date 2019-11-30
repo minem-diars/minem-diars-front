@@ -11,6 +11,7 @@ import { ProgramEvaluateComponent } from './components/program-evaluate/program-
 import { AttachFileComponent } from './components/attach-file/attach-file.component';
 import { RegisterTicketPurchaseComponent } from './components/register-ticket-purchase/register-ticket-purchase.component';
 import { EvaluateTicketPurchaseComponent } from './components/evaluate-ticket-purchase/evaluate-ticket-purchase.component';
+import { ProgramVerifyComponent } from './components/program-verify/program-verify.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
@@ -26,7 +27,9 @@ const routes: Routes = [
   {path: 'home/livelihood/attach', component: AttachFileComponent},
   {path: 'home/livelihood/attach/:programCode', component: AttachFileComponent},
   {path: 'home/purchase/ticket/register', component: RegisterTicketPurchaseComponent},
-  {path: 'home/purchase/ticket/evaluate', component: EvaluateTicketPurchaseComponent}
+  {path: 'home/purchase/ticket/evaluate', component: EvaluateTicketPurchaseComponent},
+  {path: 'home/program/verify', component: ProgramVerifyComponent},
+  {path: 'home/program/verify/:programCode', component: ProgramVerifyComponent}
 
 ];
 

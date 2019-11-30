@@ -1,0 +1,99 @@
+<app-navbar [role]="fRole"></app-navbar>
+<div class="container divFather">
+    <div class="form">
+        <div class="row">
+            <div class="col-md-5">
+                <div class="form-row">
+                    <div class="form-group col-md-3">
+                        <label for="programacion">Programación</label>
+                        <input type="text" disabled="true" class="form-control" id="programacion" [value]="programCodeRoute">
+                    </div>
+                    <div class="form-group col-md-7">
+                        <label for="searchprogram">&nbsp;</label>
+                        <div class="myBut">
+                            <button type="button" id="searchprogram" class="btn btn-secondary" [routerLink]="['/home/program/consult']">Buscar programacion</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group col-md-10">
+                    <label for="comisionado">Comisionado</label>
+                    <input type="text" class="form-control" id="comisionado" disabled="true" [value]="employeeName">
+                </div>
+                <div class="form-group col-md-10">
+                    <label for="entidad_minera">Entidad minera</label>
+                    <input type="text" class="form-control" id="entidad_minera" disabled="true" [value]="miningName">
+                </div>
+            </div>
+        </div>
+        <div class="customUbi">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Día</th>
+                        <th scope="col">Actividades</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of activities">
+                        <th scope="row">{{item.day}}</th>
+                        <td>{{item.activity}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="text-lg-center">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="derive()">Derivar</button>
+        </div>
+
+    </div>
+    <button id="modalDeriveButton" type="button" [hidden]="true" class="btn btn-primary" data-toggle="modal" data-target="#modalDerive">
+        Modal de derivar
+    </button>
+    <br>
+    <button id="modalToErrorButton" type="button" [hidden]="true" class="btn btn-primary" data-toggle="modal" data-target="#modalToError">
+        Modal de Error
+    </button>
+
+</div>
+<!-- Modal to Derive -->
+<div class="modal fade" id="modalDerive" tabindex="-1" role="dialog" aria-labelledby="modalDeriveTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Registrar cronograma</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+            </div>
+            <div class="modal-body">
+                {{backResponse.message}}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" routerLink="/home/program/evaluate">Evaluar otra programación</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" routerLink="/home">Volver al home</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal to Error -->
+<div class="modal fade" id="modalToError" tabindex="-1" role="dialog" aria-labelledby="modalToErrorTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Alerta de error</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+            </div>
+            <div class="modal-body">
+                {{error}}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>

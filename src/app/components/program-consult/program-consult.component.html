@@ -34,6 +34,7 @@
                 <td>
                     <input *ngIf="varCPV === '0'" type="button" class="btn btn-danger" routerLink="/home/program/evaluate/{{program.programCode}}" value="Cargar">
                     <input *ngIf="varCPV === '1'" type="button" class="btn btn-danger" routerLink="/home/livelihood/attach/{{program.programCode}}" value="Cargar">
+                    <input *ngIf="varCPV === '2'" type="button" class="btn btn-danger" routerLink="/home/program/verify/{{program.programCode}}" value="Cargar">
                 </td>
             </tr>
         </tbody>
