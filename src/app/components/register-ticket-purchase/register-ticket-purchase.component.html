@@ -48,17 +48,17 @@
                 <div class="form-group col-md-1">
                 </div>
                 <div class="form-group col-md-3">
-                    <button type="button" class="btn btn-danger" [disabled]="purchaseOrderRegister.valid" (click)="approveProgram()">Registrar</button>
+                    <button type="button" class="btn btn-danger" [disabled]="purchaseTicketRegister.valid">Registrar</button>
                 </div>
                 <div class="form-group col-md-4">
-                    <button type="button" class="btn btn-danger" [disabled]="purchaseOrderRegister.valid" (click)="disapproveProgram()">Cancelar</button>
+                    <button type="button" class="btn btn-danger" [disabled]="purchaseTicketRegister.valid">Cancelar</button>
                 </div>
             </div>
         </form>
     </div>
 
     <br>
-    <div *ngIf="isContinue">
+    <!-- <div *ngIf="isContinue">
 
         <button id="modalRegisterButton" type="button" [hidden]="true" class="btn btn-primary" data-toggle="modal" data-target="#modalRegister">
                 Modal de registro
@@ -67,6 +67,6 @@
         <button id="modalToErrorButton" type="button" [hidden]="true" class="btn btn-primary" data-toggle="modal" data-target="#modalToError">
                 Modal de Error
             </button>
-    </div>
+    </div> -->
 
 </div>
