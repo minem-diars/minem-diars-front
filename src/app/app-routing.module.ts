@@ -12,6 +12,7 @@ import { AttachFileComponent } from './components/attach-file/attach-file.compon
 import { RegisterTicketPurchaseComponent } from './components/register-ticket-purchase/register-ticket-purchase.component';
 import { EvaluateTicketPurchaseComponent } from './components/evaluate-ticket-purchase/evaluate-ticket-purchase.component';
 import { ProgramVerifyComponent } from './components/program-verify/program-verify.component';
+import { EmployeeRegisterComponent } from './components/employee-register/employee-register.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
@@ -29,7 +30,8 @@ const routes: Routes = [
   {path: 'home/purchase/ticket/register', component: RegisterTicketPurchaseComponent},
   {path: 'home/purchase/ticket/evaluate', component: EvaluateTicketPurchaseComponent},
   {path: 'home/program/verify', component: ProgramVerifyComponent},
-  {path: 'home/program/verify/:programCode', component: ProgramVerifyComponent}
+  {path: 'home/program/verify/:programCode', component: ProgramVerifyComponent},
+  {path: 'home/employee/register', component: EmployeeRegisterComponent}
 
 ];
 

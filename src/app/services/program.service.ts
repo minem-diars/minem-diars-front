@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class ProgramService {
 
-  private envUrl = 'http://192.168.1.4:8080/travel/program/v1/';
+  private envUrl = 'http://localhost:8080/travel/program/v1/';
 
   constructor(private http: HttpClient) { }
 
@@ -43,7 +43,7 @@ export class ProgramService {
   }
 
   public test(idProgram: number, fileName: string, file: File): Observable<any> {
-    const registertUrl = 'http://192.168.1.4:8080/travel/file/v1/upload';
+    const registertUrl = 'http://localhost:8080/travel/file/v1/upload';
     const fileRequest: FormData = new FormData();
     const prepareToReq = `${file.name}+${fileName}+${idProgram}`;
     fileRequest.append('file', file, prepareToReq);
@@ -51,7 +51,7 @@ export class ProgramService {
   }
 
   public testD(id: any): Observable<any> {
-    const registertUrl = 'http://192.168.1.4:8080/travel/file/v1/download/';
+    const registertUrl = 'http://localhost:8080/travel/file/v1/download/';
     return this.http.get(registertUrl + id);
   }
 

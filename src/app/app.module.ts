@@ -20,6 +20,7 @@ import { AttachFileComponent } from './components/attach-file/attach-file.compon
 import { RegisterTicketPurchaseComponent } from './components/register-ticket-purchase/register-ticket-purchase.component';
 import { EvaluateTicketPurchaseComponent } from './components/evaluate-ticket-purchase/evaluate-ticket-purchase.component';
 import { ProgramVerifyComponent } from './components/program-verify/program-verify.component';
+import { EmployeeRegisterComponent } from './components/employee-register/employee-register.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { ProgramVerifyComponent } from './components/program-verify/program-veri
     RegisterTicketPurchaseComponent,
     EvaluateTicketPurchaseComponent,
     ProgramVerifyComponent,
+    EmployeeRegisterComponent,
   ],
   imports: [
     BrowserModule,

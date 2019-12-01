@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class ChronogramService {
 
-  private envUrl = 'http://192.168.1.4:8080/travel/chronogram/v1/';
+  private envUrl = 'http://localhost:8080/travel/chronogram/v1/';
 
   constructor(private http: HttpClient) { }
 

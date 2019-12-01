@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class LoginService {
 
-  private loginUrl = 'http://192.168.1.4:8080/travel/login/v1/access';
+  private loginUrl = 'http://localhost:8080/travel/login/v1/access';
 
   constructor(private http: HttpClient) { }
 
