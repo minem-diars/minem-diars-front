@@ -2,62 +2,64 @@
 <div class="row">
     <div class="container divFather">
         <div class="divSon">
-            <div class="form-row">
-                <div class="form-group col-md-3">
-                    <label for="name">Nombre</label>
-                    <input type="text" class="form-control" id="name" [value]="employeeName">
+            <form>
+                <div class="form-row">
+                    <div class="form-group col-md-3">
+                        <label for="name">Nombre</label>
+                        <input type="text" class="form-control" id="name" [value]="employeeName">
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="lastname">Apellidos</label>
+                        <input type="text" class="form-control" id="lastname" [value]="employeeLastname">
+                    </div>
                 </div>
-                <div class="form-group col-md-3">
-                    <label for="lastname">Apellidos</label>
-                    <input type="text" class="form-control" id="lastname" [value]="employeeLastname">
+                <div class="form-row">
+                    <div class="form-group col-md-3">
+                        <label for="dni">DNI</label>
+                        <input type="text" class="form-control" id="dni" [value]="employeeDni">
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="address">Direccion</label>
+                        <input type="text" class="form-control" id="address" [value]="employeeAddress">
+                    </div>
                 </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-3">
-                    <label for="dni">DNI</label>
-                    <input type="text" class="form-control" id="dni" [value]="employeeDni">
+                <div class="form-row">
+                    <div class="form-group col-md-3">
+                        <label for="email">Email</label>
+                        <input type="text" class="form-control" id="email" [value]="employeeEmail">
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="phone">Celular</label>
+                        <input type="text" class="form-control" id="phone" [value]="employeePhone">
+                    </div>
                 </div>
-                <div class="form-group col-md-3">
-                    <label for="address">Direccion</label>
-                    <input type="text" class="form-control" id="address" [value]="employeeAddress">
+                <div class="form-row">
+                    <div class="form-group col-md-3">
+                        <label for="username">Usuario</label>
+                        <input type="text" class="form-control" id="username" [value]="credentialUser">
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="pass">Contraseña</label>
+                        <input type="password" class="form-control" id="pass" [value]="credentialPassword">
+                    </div>
                 </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-3">
-                    <label for="email">Email</label>
-                    <input type="text" class="form-control" id="email" [value]="employeeEmail">
+                <div class="form-row">
+                    <div class="form-group col-md-3">
+                        <label for="roles">Rol</label>
+                        <!-- formControlName="miningCode" -->
+                        <select class="form-control" id="roleID">
+                            <option *ngFor="let rol of roles" [value]="rol.code">{{rol.name}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="pass">Confirmar contraseña</label>
+                        <input type="password" class="form-control" id="pass" [value]="employeePhone">
+                    </div>
                 </div>
-                <div class="form-group col-md-3">
-                    <label for="phone">Celular</label>
-                    <input type="text" class="form-control" id="phone" [value]="employeePhone">
+                <div class="buttonCont">
+                        <button type="submit" class="btn btn-primary" (click)="registerEmployee()">Continuar</button>
                 </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-3">
-                    <label for="username">Usuario</label>
-                    <input type="text" class="form-control" id="username" [value]="credentialUser">
-                </div>
-                <div class="form-group col-md-3">
-                    <label for="pass">Contraseña</label>
-                    <input type="password" class="form-control" id="pass" [value]="credentialPassword">
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-3">
-                    <label for="role">Rol</label>
-                    <!-- formControlName="miningCode" -->
-                    <select class="form-control" id="roleID">
-                        <option *ngFor="let rol of role" [value]="rol.code">{{rol.name}}</option>
-                    </select>
-                </div>
-                <div class="form-group col-md-3">
-                    <label for="pass">Confirmar contraseña</label>
-                    <input type="password" class="form-control" id="pass" [value]="employeePhone">
-                </div>
-            </div>
+            </form>
         </div>
     </div>
-</div>
-<div class="text-lg-center">
-    <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="register()">Registrar</button>
 </div>
