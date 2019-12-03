@@ -42,14 +42,6 @@ export class ProgramService {
     return this.http.get(registertUrl + programCode);
   }
 
-  public test(idProgram: number, fileName: string, file: File): Observable<any> {
-    const registertUrl = 'http://localhost:8080/travel/file/v1/upload';
-    const fileRequest: FormData = new FormData();
-    const prepareToReq = `${file.name}+${fileName}+${idProgram}`;
-    fileRequest.append('file', file, prepareToReq);
-    return this.http.post(registertUrl, fileRequest);
-  }
-
   public testD(id: any): Observable<any> {
     const registertUrl = 'http://localhost:8080/travel/file/v1/download/';
     return this.http.get(registertUrl + id);

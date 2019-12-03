@@ -39,7 +39,7 @@
             <div class="form-group col-md-3">
                 <label for="searchprogram">&nbsp;</label>
                 <div class="myBut">
-                    <button type="button" id="searchprogram" class="btn btn-secondary">Registrar</button>
+                    <button type="button" id="searchprogram" class="btn btn-secondary" (click)="getDataTable(filesUploaded)">Registrar</button>
                 </div>
             </div>
         </div>
@@ -50,7 +50,6 @@
                 <tr>
                     <th>Nombre de archivo</th>
                     <th>Titulo de enlace</th>
-                    <th>Adjuntar</th>
                 </tr>
             </thead>
             <tbody>
@@ -59,7 +58,6 @@
                     <td>
                         <input type="text" id="{{file.name}}">
                     </td>
-                    <td>Mark</td>
                 </tr>
             </tbody>
         </table>

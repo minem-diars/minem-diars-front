@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { ProgramService } from '../../services/program.service';
 import { ActivatedRoute } from '@angular/router';
+import { AttachFileService } from 'src/app/services/attach-file.service';
 
 @Component({
   selector: 'app-attach-file',
@@ -20,7 +21,8 @@ export class AttachFileComponent implements OnInit {
   miningName = '';
 
   constructor(private route: ActivatedRoute,
-              private programService: ProgramService) { }
+              private programService: ProgramService,
+              private attachFileService: AttachFileService) { }
 
   ngOnInit() {
     localStorage.setItem('tempCPV', '1');
@@ -51,10 +53,9 @@ export class AttachFileComponent implements OnInit {
   }
 
   getDataTable(evt: any) {
-    const mapReq = new Map<string, Blob>();
     for (const index of evt) {
       const key: any = document.getElementById(index.name);
-      this.programService.test(this.programCodeRoute, key.value, index).subscribe( data => {
+      this.attachFileService.uploadFile(this.programCodeRoute, key.value, index).subscribe( data => {
         console.log(data);
       });
     }
