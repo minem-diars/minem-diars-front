@@ -12,15 +12,8 @@ import { CommonService } from '../../services/common.service';
 export class EmployeeRegisterComponent implements OnInit {
 
   fRole = '';
-  employeeName = '';
-  employeeLastname = '';
-  employeeDni = '';
-  employeeAddress = '';
   roles: any;
-  employeeEmail = '';
-  employeePhone = '';
-  credentialUser = '';
-  credentialPassword = '';
+  equalsPass = false;
   request: any = {
     employee: {
       address: '',
@@ -59,6 +52,7 @@ export class EmployeeRegisterComponent implements OnInit {
       phone: new FormControl('', Validators.required),
       username: new FormControl('', Validators.required),
       password: new FormControl('', Validators.required),
+      passConfirm: new FormControl('', Validators.required),
       idRole: new FormControl('', Validators.required)
     });
   }
@@ -69,7 +63,38 @@ export class EmployeeRegisterComponent implements OnInit {
     });
   }
 
-  registerEmployee() {
+  onSubmit() {
+    this.validatePassword(this.employeeRegister.get('password').value, this.employeeRegister.get('passConfirm').value);
+    if (this.equalsPass) {
+      this.request.employee.address = this.employeeRegister.get('address').value;
+      this.request.employee.dni = this.employeeRegister.get('dni').value;
+      this.request.employee.email = this.employeeRegister.get('email').value;
+      this.request.employee.lastname = this.employeeRegister.get('lastname').value;
+      this.request.employee.name = this.employeeRegister.get('name').value;
+      this.request.employee.phone = this.employeeRegister.get('phone').value;
+      this.request.credential.username = this.employeeRegister.get('username').value;
+      this.request.credential.password = this.employeeRegister.get('password').value;
+      this.request.role.idRole = this.employeeRegister.get('idRole').value;
+      console.log(this.request);
+      this.registerEmployee(this.request);
+    }
+  }
+
+  registerEmployee(request: any) {
+    this.employeeService.registerEmployee(request).subscribe(data => {
+      // this.backResponse = data;
+      console.log(data);
+    });
+  }
+
+  validatePassword(pass1: string, pass2: string) {
+    if ((pass1 === pass2)) {
+      this.equalsPass = true;
+    }
+  }
+
+  validateWithModal() {
+    this.employeeRegister.reset();
   }
 
 }
