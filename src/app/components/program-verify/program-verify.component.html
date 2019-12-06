@@ -38,7 +38,11 @@
                 <tbody>
                     <tr *ngFor="let item of activities">
                         <th scope="row">{{item.day}}</th>
-                        <td>{{item.activity}}</td>
+                        <td>
+                            <ul>
+                                <li>{{item.activity}}</li>
+                            </ul>
+                        </td>
                     </tr>
                 </tbody>
             </table>

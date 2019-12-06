@@ -68,8 +68,9 @@ export class AttachFileComponent implements OnInit {
   }
 
   testD() {
-    const URL = 'http://localhost:8081/files/2consultar cronograma de viaje.jpeg';
+    const URL = 'http://localhost:8080/travel/file/v1/download/7/Comprobante';
     window.open(URL);
   }
 
+  
 }
