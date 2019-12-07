@@ -82,9 +82,18 @@ export class EmployeeRegisterComponent implements OnInit {
 
   registerEmployee(request: any) {
     this.employeeService.registerEmployee(request).subscribe(data => {
-      // this.backResponse = data;
-      console.log(data);
+      this.validateServiceResponse(data);
     });
+  }
+
+  validateServiceResponse(data: any) {
+    if (parseInt(data.status, 10) === 0) {
+      this.backResponse.message = data.description;
+      document.getElementById('modalRegisterButton').click();
+    } else {
+      this.error = data.errorMessage;
+      document.getElementById('modalToErrorButton').click();
+    }
   }
 
   validatePassword(pass1: string, pass2: string) {

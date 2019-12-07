@@ -68,9 +68,8 @@ export class AttachFileComponent implements OnInit {
   }
 
   testD() {
-    const URL = 'http://localhost:8080/travel/file/v1/download/7/Comprobante';
+    const URL = 'http://localhost:8080/travel/file/v1/download/4/Pagos';
     window.open(URL);
   }
 
-  
 }
