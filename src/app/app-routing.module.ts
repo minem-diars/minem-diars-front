@@ -13,6 +13,8 @@ import { RegisterTicketPurchaseComponent } from './components/register-ticket-pu
 import { EvaluateTicketPurchaseComponent } from './components/evaluate-ticket-purchase/evaluate-ticket-purchase.component';
 import { ProgramVerifyComponent } from './components/program-verify/program-verify.component';
 import { EmployeeRegisterComponent } from './components/employee-register/employee-register.component';
+import { PasswordModifyComponent } from './components/password-modify/password-modify.component';
+import { ProgramModifyComponent } from './components/program-modify/program-modify.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
@@ -31,7 +33,10 @@ const routes: Routes = [
   {path: 'home/purchase/ticket/evaluate', component: EvaluateTicketPurchaseComponent},
   {path: 'home/program/verify', component: ProgramVerifyComponent},
   {path: 'home/program/verify/:programCode', component: ProgramVerifyComponent},
-  {path: 'home/employee/register', component: EmployeeRegisterComponent}
+  {path: 'home/employee/register', component: EmployeeRegisterComponent},
+  {path: 'home/login/password-modify', component: PasswordModifyComponent},
+  {path: 'home/program/modify', component: ProgramModifyComponent}
+
 
 ];
 

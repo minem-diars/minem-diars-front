@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class ProgramService {
 
-  private envUrl = 'http://localhost:8080/travel/program/v1/';
+  private envUrl = 'http://192.168.1.7:8080/travel/program/v1/';
 
   constructor(private http: HttpClient) { }
 
@@ -43,7 +43,7 @@ export class ProgramService {
   }
 
   public testD(id: any): Observable<any> {
-    const registertUrl = 'http://localhost:8080/travel/file/v1/download/';
+    const registertUrl = 'http://192.168.1.7:8080/travel/file/v1/download/';
     return this.http.get(registertUrl + id);
   }
 

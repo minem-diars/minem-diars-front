@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class CommonService {
 
-  private envUrl = 'http://localhost:8080/travel/common/v1/';
+  private envUrl = 'http://192.168.1.7:8080/travel/common/v1/';
 
   constructor(private http: HttpClient) { }
 

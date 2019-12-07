@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ChronogramService } from 'src/app/services/chronogram.service';
 import { ProgramService } from 'src/app/services/program.service';
 
-@Component({
+@Component( {
   selector: 'app-program-register',
   templateUrl: './program-register.component.html',
   styleUrls: ['./program-register.component.css']

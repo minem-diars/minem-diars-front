@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CommonService } from '../../services/common.service';
 import { ChronogramService } from '../../services/chronogram.service';
 
@@ -33,7 +33,7 @@ export class ChronogramRegisterComponent implements OnInit {
   backResponse: any = {};
   error = '';
 
-  constructor(private formBuilder: FormBuilder,
+  constructor(
               private commonService: CommonService,
               private chronogramService: ChronogramService) { }
 
@@ -41,7 +41,7 @@ export class ChronogramRegisterComponent implements OnInit {
     this.fRole = localStorage.getItem('empRole');
     this.obtainCodeEmployee();
     this.obtainMinings();
-    this.chronogramRegister = this.formBuilder.group({
+    this.chronogramRegister = new FormGroup({
       nameService: new FormControl('', Validators.required),
       miningCode: new FormControl('', Validators.required),
       initialDate: new FormControl('', Validators.required),
@@ -49,7 +49,7 @@ export class ChronogramRegisterComponent implements OnInit {
       days: new FormControl('', Validators.required)
     });
 
-    this.chronogramDatail = this.formBuilder.group({
+    this.chronogramDatail = new FormGroup({
       day: new FormControl(''),
       activities: new FormControl('', Validators.required)
     });

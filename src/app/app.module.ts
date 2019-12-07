@@ -21,6 +21,8 @@ import { RegisterTicketPurchaseComponent } from './components/register-ticket-pu
 import { EvaluateTicketPurchaseComponent } from './components/evaluate-ticket-purchase/evaluate-ticket-purchase.component';
 import { ProgramVerifyComponent } from './components/program-verify/program-verify.component';
 import { EmployeeRegisterComponent } from './components/employee-register/employee-register.component';
+import { PasswordModifyComponent } from './components/password-modify/password-modify.component';
+import { ProgramModifyComponent } from './components/program-modify/program-modify.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +43,8 @@ import { EmployeeRegisterComponent } from './components/employee-register/employ
     EvaluateTicketPurchaseComponent,
     ProgramVerifyComponent,
     EmployeeRegisterComponent,
+    PasswordModifyComponent,
+    ProgramModifyComponent,
   ],
   imports: [
     BrowserModule,

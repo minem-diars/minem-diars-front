@@ -25,7 +25,7 @@ export class EvaluateTicketPurchaseComponent implements OnInit {
     });
   }
 
-  onSubmit(){
+  onSubmit() {
   }
 
 }

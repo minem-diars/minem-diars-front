@@ -39,33 +39,33 @@
                         <input type="text" class="form-control" id="username" formControlName="username">
                     </div>
                     <div class="form-group col-md-3">
-                            <label for="roles">Rol</label>
-                            <!-- formControlName="miningCode" -->
-                            <select class="form-control" id="roleID" formControlName="idRole">
+                        <label for="roles">Rol</label>
+                        <!-- formControlName="miningCode" -->
+                        <select class="form-control" id="roleID" formControlName="idRole">
                                 <option *ngFor="let rol of roles" [value]="rol.code">{{rol.name}}</option>
                             </select>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-3">
-                                <label for="pass">Contraseña</label>
-                                <input type="password" class="form-control" id="password" formControlName="password">
-                            </div>
+                        <label for="pass">Contraseña</label>
+                        <input type="password" class="form-control" id="password" formControlName="password">
+                    </div>
                     <div class="form-group col-md-3">
                         <label for="pass">Confirmar contraseña</label>
                         <input type="password" class="form-control" id="passConfirm" formControlName="passConfirm">
                     </div>
                 </div>
                 <div class="buttonCont">
-                        <button type="submit" class="btn btn-primary" [disabled]=employeeRegister.invalid>Continuar</button>
+                    <button type="submit" class="btn btn-primary" [disabled]=employeeRegister.invalid>Continuar</button>
                 </div>
             </form>
         </div>
         <button id="modalRegisterButton" type="button" [hidden]="true" class="btn btn-primary" data-toggle="modal" data-target="#modalRegister">
                 Modal de registro
             </button>
-            <br>
-            <button id="modalToErrorButton" type="button" [hidden]="true" class="btn btn-primary" data-toggle="modal" data-target="#modalToError">
+        <br>
+        <button id="modalToErrorButton" type="button" [hidden]="true" class="btn btn-primary" data-toggle="modal" data-target="#modalToError">
                 Modal de Error
             </button>
     </div>
@@ -73,41 +73,41 @@
 
 <!-- Modal to Register -->
 <div class="modal fade" id="modalRegister" tabindex="-1" role="dialog" aria-labelledby="modalRegisterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Registrar cronograma</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Registrar empleado</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
-                </div>
-                <div class="modal-body">
-                    {{backResponse.message}}
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="validateWithModal()">Registrar otro cronograma</button>
-                    <button type="button" class="btn btn-primary" data-dismiss="modal" routerLink="/home">Volver al home</button>
-                </div>
+            </div>
+            <div class="modal-body">
+                {{backResponse.message}}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="validateWithModal()">Registrar otro cronograma</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" routerLink="/home">Volver al home</button>
             </div>
         </div>
     </div>
-    
-    <!-- Modal to Error -->
-    <div class="modal fade" id="modalToError" tabindex="-1" role="dialog" aria-labelledby="modalToErrorTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Alerta de error</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+</div>
+
+<!-- Modal to Error -->
+<div class="modal fade" id="modalToError" tabindex="-1" role="dialog" aria-labelledby="modalToErrorTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Alerta de error</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
-                </div>
-                <div class="modal-body">
-                    {{error}}
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                </div>
+            </div>
+            <div class="modal-body">
+                {{error}}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
             </div>
         </div>
     </div>
+</div>

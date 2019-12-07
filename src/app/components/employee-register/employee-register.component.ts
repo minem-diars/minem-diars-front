@@ -88,7 +88,7 @@ export class EmployeeRegisterComponent implements OnInit {
 
   validateServiceResponse(data: any) {
     if (parseInt(data.status, 10) === 0) {
-      this.backResponse.message = data.description;
+      this.backResponse.message = data.message;
       document.getElementById('modalRegisterButton').click();
     } else {
       this.error = data.errorMessage;
@@ -99,6 +99,9 @@ export class EmployeeRegisterComponent implements OnInit {
   validatePassword(pass1: string, pass2: string) {
     if ((pass1 === pass2)) {
       this.equalsPass = true;
+    } else {
+      this.error = 'Las contraseñas deben de ser iguales.';
+      document.getElementById('modalToErrorButton').click();
     }
   }
 
