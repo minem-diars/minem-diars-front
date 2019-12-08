@@ -7,14 +7,14 @@ import { Observable } from 'rxjs';
 })
 export class ProgramService {
 
-  private envUrl = 'http://192.168.1.7:8080/travel/program/v1/';
+  private envUrl = 'http://localhost:8080/travel/program/v1/';
 
   constructor(private http: HttpClient) { }
 
   /* Coonsultar programaciones */
-  public consultPrograms(employeeCode: number, userRole: string): Observable<any> {
+  public consultPrograms(employeeCode: number, userRole: string, flag: number): Observable<any> {
     const consultUrl = this.envUrl + 'consult/';
-    return this.http.get(consultUrl + employeeCode + '/' + userRole);
+    return this.http.get(consultUrl + employeeCode + '/' + userRole + '/' + flag);
   }
 
   /* Coonsultar programacion */

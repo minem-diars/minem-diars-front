@@ -16,12 +16,12 @@ export class ProgramConsultComponent implements OnInit {
   programs: any = [];
   employeeName = 'nombre de empleado';
 
-  varCPV = '';
+  varCPV: number;
 
   constructor(private programService: ProgramService) { }
 
   ngOnInit() {
-    this.varCPV = localStorage.getItem('tempCPV');
+    this.varCPV = parseInt(localStorage.getItem('tempCPV'), 10);
     this.fRole = localStorage.getItem('empRole');
     this.codeOfUser = new FormGroup({
       userCode: new FormControl('')
@@ -31,7 +31,7 @@ export class ProgramConsultComponent implements OnInit {
   findDataByCode() {
     const employeeCode = parseInt(this.codeOfUser.value.userCode, 10);
     if (!isNaN(employeeCode)) {
-      this.programService.consultPrograms(employeeCode, this.fRole).subscribe( data => {
+      this.programService.consultPrograms(employeeCode, this.fRole, this.varCPV).subscribe( data => {
         this.programs = data.programs;
         this.employeeName = data.employeeName;
       });

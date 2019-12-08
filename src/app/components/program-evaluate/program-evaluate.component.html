@@ -39,7 +39,7 @@
                 <div class="form-group col-md-4">
                     <label for="derivated">&nbsp;</label>
                     <div class="myBut">
-                        <button type="submit" id="derivated" class="btn btn-secondary" [disabled]="derivable">Derivar</button>
+                        <button *ngIf="fRole == 'ROLE_DGFM'" type="button" id="derivated" class="btn btn-secondary" (click)="derivaProgram()" [disabled]="derivable">Derivar</button>
                     </div>
                 </div>
             </div>

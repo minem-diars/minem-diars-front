@@ -18,7 +18,11 @@ export class ProgramVerifyComponent implements OnInit {
   error = '';
   request: any = {
     programCode: 0,
-    state: 4
+    role: '',
+    state: 0,
+    derv_dg: 0,
+    derv_ol: 0,
+    state_dl: 0
   };
   backResponse: any = {};
 
@@ -26,7 +30,8 @@ export class ProgramVerifyComponent implements OnInit {
               private programService: ProgramService) { }
 
   ngOnInit() {
-    localStorage.setItem('tempCPV', '2');
+    this.fRole = localStorage.getItem('empRole');
+    localStorage.setItem('tempCPV', '3');
     this.programCodeRoute = parseInt(this.route.snapshot.paramMap.get('programCode'), 10);
     this.validateNanValue(this.programCodeRoute);
     this.findProgram(this.programCodeRoute);
@@ -44,7 +49,6 @@ export class ProgramVerifyComponent implements OnInit {
         this.employeeName = data.employeeName;
         this.miningName = data.miningName;
         this.activities = data.activities;
-        console.log(this.activities);
       });
     }
   }
@@ -52,9 +56,10 @@ export class ProgramVerifyComponent implements OnInit {
   derive() {
     this.request.programCode = this.programCodeRoute;
     if (this.request.programCode !== 0) {
+      this.reqOLOGder();
       this.sendUpdateState(this.request);
     } else {
-      this.error = 'Para poder aprobar debe seleccionar una programación.';
+      this.error = 'Para poder derivar debe seleccionar una programación.';
       document.getElementById('modalToErrorButton').click();
     }
   }
@@ -62,13 +67,21 @@ export class ProgramVerifyComponent implements OnInit {
   sendUpdateState(request: any) {
     this.programService.updateProgramState(request).subscribe( data => {
       if (parseInt(data.status, 10) === 0) {
-        this.backResponse.message = data.message;
-        document.getElementById('modalRegisterButton').click();
+        this.backResponse.description = data.message;
+        document.getElementById('modalDeriveButton').click();
       } else {
         this.error = data.errorMessage;
         document.getElementById('modalToErrorButton').click();
       }
     });
+  }
+
+  reqOLOGder() {
+    this.request.role = 'ROLE_OLOG';
+    this.request.state = 1;
+    this.request.derv_dg = 0;
+    this.request.derv_ol = 1;
+    this.request.state_dl = 0;
   }
 
 }

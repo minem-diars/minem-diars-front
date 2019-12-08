@@ -18,37 +18,69 @@
                 <a *ngIf="role == 'ROLE_USER'" class="nav-link" [routerLink]="['/home/chronogram/register']">Registrar cronograma de viaje</a>
             </li>
             <li class="nav-item">
-                <a *ngIf="false" class="nav-link" [routerLink]="['/home/chronogram/consult']">Consultar cronograma de viaje</a>
+                <a *ngIf="role == 'ROLE_COAD'" class="nav-link" [routerLink]="['/home/program/register']">Registrar programación de viaje</a>
             </li>
             <li class="nav-item">
-                <a *ngIf="role == 'ROLE_C_ADMIN'" class="nav-link" [routerLink]="['/home/program/register']">Registrar programación de viaje</a>
+                <a *ngIf="role == 'ROLE_COAD'" class="nav-link" [routerLink]="['/home/livelihood/attach']">Registrar documento de sustento</a>
             </li>
             <li class="nav-item">
-                <a *ngIf="false" class="nav-link" [routerLink]="['/home/program/consult']">Consultar programación de viaje</a>
+                <a *ngIf="role == 'ROLE_COAD'" class="nav-link" [routerLink]="['/home/purchase/ticket/register']">Registrar pedido compra de pasaje</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" [routerLink]="['/home/program/evaluate']">Evaluar programación</a>
+                <a *ngIf="role == 'ROLE_DGFM' || role == 'ROLE_VICE' || role == 'ROLE_DLOG'" class="nav-link" [routerLink]="['/home/program/evaluate']">Evaluar programación</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" [routerLink]="['/home/livelihood/attach']">RDS</a>
+                <a *ngIf="role == 'ROLE_DLOG'" class="nav-link" [routerLink]="['/home/purchase/ticket/evaluate']">Evaluar pedido de compra de pasaje</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" [routerLink]="['/home/purchase/ticket/register']">RCP</a>
+                <a *ngIf="role == 'ROLE_OLOG'" class="nav-link" [routerLink]="['/home/program/verify']">Verificar programacion de viaje</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" [routerLink]="['/home/purchase/ticket/evaluate']">EPCP</a>
+            <li *ngIf="role == 'ROLE_DEV'" class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Consultas
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" [routerLink]="['/home/chronogram/consult']">Consultar cronograma de viaje</a>
+                    <a class="dropdown-item" [routerLink]="['/home/program/consult']">Consultar programación de viaje</a>
+                </div>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" [routerLink]="['/home/program/verify']">VPV</a>
+            <li *ngIf="role == 'ROLE_DEV'" class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Registros
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" [routerLink]="['/home/chronogram/register']">Registrar cronograma de viaje</a>
+                    <a class="dropdown-item" [routerLink]="['/home/program/register']">Registrar programación de viaje</a>
+                    <a class="dropdown-item" [routerLink]="['/home/livelihood/attach']">Registrar documento de sustento</a>
+                    <a class="dropdown-item" [routerLink]="['/home/purchase/ticket/register']">Registrar pedido compra de pasaje</a>
+                    <a class="dropdown-item" [routerLink]="['/home/employee/register']">Registrar empleado</a>
+                </div>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" [routerLink]="['/home/employee/register']">RE</a>
+            <li *ngIf="role == 'ROLE_DEV'" class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Evaluaciones
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" [routerLink]="['/home/program/evaluate']">Evaluar programación</a>
+                    <a class="dropdown-item" [routerLink]="['/home/purchase/ticket/evaluate']">Evaluar pedido de compra de pasaje</a>
+                </div>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" [routerLink]="['/home/login/password-modify']">MC</a>
+            <li *ngIf="role == 'ROLE_DEV'" class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Verificar
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" [routerLink]="['/home/program/verify']">Verificar programacion de viaje</a>
+                </div>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" [routerLink]="['/home/program/modify']">MP</a>
+            <li *ngIf="role == 'ROLE_DEV'" class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Seguridad
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" [routerLink]="['/home/login/password-modify']">Modificar contraseña</a>
+                    <a class="dropdown-item" [routerLink]="['/home/program/modify']">Modificar programacion</a>
+                </div>
             </li>
 
         </ul>

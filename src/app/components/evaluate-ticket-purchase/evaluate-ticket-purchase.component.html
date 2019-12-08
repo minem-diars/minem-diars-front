@@ -2,27 +2,26 @@
 <div class="container divFather">
     <div class="divSon">
         <form novalidate (ngSubmit)="onSubmit()" [formGroup]="purchaseTicketEvaluate">
-
             <div class="form-row">
                 <div class="form-group col-md-2">
-                    <label for="cronograma">Programación</label>
-                    <input type="text" disabled="true" class="form-control" id="cronograma" [value]="programCodeRoute">
+                    <label for="cronograma">Pedido de pasaje</label>
+                    <input type="text" disabled="true" class="form-control" id="cronograma" [value]="ticketCodeRoute">
                 </div>
                 <div class="form-group col-md-4">
                     <label for="entidad_minera">&nbsp;</label>
                     <div class="myBut">
-                        <button type="submit " class="btn btn-secondary">Buscar programación</button>
+                        <button type="button" class="btn btn-secondary" [routerLink]="['/home/purchase/ticket/consult']">Buscar pedido</button>
                     </div>
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-3">
-                    <label for="entidad_minera">Entidad minera</label>
-                    <input type="text" class="form-control" id="entidad_minera" disabled="true" [value]="miningEnt">
-                </div>
-                <div class="form-group col-md-3">
                     <label for="comisionado">Comisionado</label>
                     <input type="text" class="form-control" id="comisionado" disabled="true" [value]="empFullName">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="entidad_minera">Entidad minera</label>
+                    <input type="text" class="form-control" id="entidad_minera" disabled="true" [value]="miningEnt">
                 </div>
             </div>
             <div class="form-row">
@@ -30,20 +29,16 @@
                     <label for="airline">Aerolinea</label>
                     <input type="text" class="form-control" id="airline" disabled="true" [value]="airline">
                 </div>
-                <div class="form-group col-md-3">
-                    <label for="days">Dias</label>
-                    <input type="text" class="form-control" id="days" disabled="true" [value]="days">
-                </div>
             </div>
             <br>
             <div class="form-row">
                 <div class="form-group col-md-1">
                 </div>
                 <div class="form-group col-md-3">
-                    <button type="button" class="btn btn-danger" (click)="approveProgram()">Autorizar</button>
+                    <button type="button" class="btn btn-danger" [disabled]="isEnable" (click)="approveProgram()">Autorizar</button>
                 </div>
                 <div class="form-group col-md-4">
-                    <button type="button" class="btn btn-danger" (click)="disapproveProgram()">Rechazar</button>
+                    <button type="button" class="btn btn-danger" [disabled]="isEnable" (click)="disapproveProgram()">Rechazar</button>
                 </div>
             </div>
         </form>
@@ -51,7 +46,7 @@
 
     <br>
 
-    <button id="modalRegisterButton" type="button" [hidden]="true" class="btn btn-primary" data-toggle="modal" data-target="#modalRegister">
+    <button id="modalUpdateButton" type="button" [hidden]="true" class="btn btn-primary" data-toggle="modal" data-target="#modalUpdate">
                 Modal de registro
             </button>
     <br>
@@ -59,4 +54,46 @@
                 Modal de Error
             </button>
 
+</div>
+
+
+<!-- Modal to Update -->
+<div class="modal fade" id="modalUpdate" tabindex="-1" role="dialog" aria-labelledby="modalUpdateTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Actualizar pedido</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                {{backResponse.message}}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" routerLink="/home/purchase/ticket/evaluate">Evaluar otro pedido</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" routerLink="/home">Volver al home</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal to Error -->
+<div class="modal fade" id="modalToError" tabindex="-1" role="dialog" aria-labelledby="modalToErrorTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Alerta de error</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                {{error}}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" routerLink="/home/purchase/ticket/evaluate">Cerrar</button>
+            </div>
+        </div>
+    </div>
 </div>

@@ -20,7 +20,11 @@ export class ProgramEvaluateComponent implements OnInit {
   tDays = '';
   request: any = {
     programCode: 0,
-    state: 0
+    role: '',
+    state: 0,
+    derv_dg: 0,
+    derv_ol: 0,
+    state_dl: 0
   };
 
   backResponse: any = {};
@@ -41,15 +45,18 @@ export class ProgramEvaluateComponent implements OnInit {
   }
 
   onSubmit() {
-    this.request.programCode = this.programEvaluate.value.programCode;
-    this.request.state = 3;
-    this.sendUpdateState(this.request);
   }
 
   disapproveProgram() {
     this.request.programCode = this.programEvaluate.value.programCode;
-    this.request.state = 1;
     if (this.request.programCode !== 0) {
+      if (this.fRole === 'ROLE_DGFM') {
+        this.reqDGFMden();
+      } else if (this.fRole === 'ROLE_VICE') {
+        this.reqVICEden();
+      } else if (this.fRole === 'ROLE_DLOG') {
+        this.reqDLOGden();
+      }
       this.sendUpdateState(this.request);
     } else {
       this.error = 'Para poder desaprobar debe seleccionar una programación.';
@@ -59,8 +66,25 @@ export class ProgramEvaluateComponent implements OnInit {
 
   approveProgram() {
     this.request.programCode = this.programEvaluate.value.programCode;
-    this.request.state = 0;
     if (this.request.programCode !== 0) {
+      if (this.fRole === 'ROLE_DGFM') {
+        this.reqDGFMace();
+      } else if (this.fRole === 'ROLE_VICE') {
+        this.reqVICEace();
+      } else if (this.fRole === 'ROLE_DLOG') {
+        this.reqDLOGace();
+      }
+      this.sendUpdateState(this.request);
+    } else {
+      this.error = 'Para poder aprobar debe seleccionar una programación.';
+      document.getElementById('modalToErrorButton').click();
+    }
+  }
+
+  derivaProgram() {
+    this.request.programCode = this.programEvaluate.value.programCode;
+    if (this.request.programCode !== 0) {
+      this.reqDGFMder();
       this.sendUpdateState(this.request);
     } else {
       this.error = 'Para poder aprobar debe seleccionar una programación.';
@@ -110,5 +134,60 @@ export class ProgramEvaluateComponent implements OnInit {
     this.tDays = '';
   }
 
+  reqDGFMace() {
+    this.request.role = 'ROLE_DGFM';
+    this.request.state = 1;
+    this.request.derv_dg = 0;
+    this.request.derv_ol = 0;
+    this.request.state_dl = 0;
+  }
+
+  reqDGFMden() {
+    this.request.role = 'ROLE_DGFM';
+    this.request.state = 0;
+    this.request.derv_dg = 0;
+    this.request.derv_ol = 0;
+    this.request.state_dl = 0;
+  }
+
+  reqDGFMder() {
+    this.request.role = 'ROLE_DGFM';
+    this.request.state = 2;
+    this.request.derv_dg = 1;
+    this.request.derv_ol = 0;
+    this.request.state_dl = 0;
+  }
+
+  reqVICEace() {
+    this.request.role = 'ROLE_VICE';
+    this.request.state = 1;
+    this.request.derv_dg = 1;
+    this.request.derv_ol = 0;
+    this.request.state_dl = 0;
+  }
+
+  reqVICEden() {
+    this.request.role = 'ROLE_VICE';
+    this.request.state = 0;
+    this.request.derv_dg = 1;
+    this.request.derv_ol = 0;
+    this.request.state_dl = 0;
+  }
+
+  reqDLOGace() {
+    this.request.role = 'ROLE_DLOG';
+    this.request.state = 1;
+    this.request.derv_dg = 0;
+    this.request.derv_ol = 1;
+    this.request.state_dl = 1;
+  }
+
+  reqDLOGden() {
+    this.request.role = 'ROLE_DLOG';
+    this.request.state = 1;
+    this.request.derv_dg = 0;
+    this.request.derv_ol = 1;
+    this.request.state_dl = 0;
+  }
 
 }

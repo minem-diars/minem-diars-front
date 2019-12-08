@@ -13,13 +13,14 @@ export class PasswordModifyComponent implements OnInit {
 
   fRole: string;
 
-  passwordModify: FormGroup;
+  validateForm: FormGroup;
   passwordForm: FormGroup;
   request: any = {
     email: '',
-    user: ''
+    username: ''
   };
   requestPass: any = {
+    employeeCode: 0,
     password: ''
   };
   equalsPass = false;
@@ -31,8 +32,8 @@ export class PasswordModifyComponent implements OnInit {
 
   ngOnInit() {
     this.fRole = localStorage.getItem('empRole');
-    this.passwordModify = new FormGroup({
-      email: new FormControl('', Validators.required),
+    this.validateForm = new FormGroup({
+      email: new FormControl('', [Validators.required, Validators.email]),
       user: new FormControl('', Validators.required)
     });
     this.passwordForm = new FormGroup({
@@ -42,8 +43,8 @@ export class PasswordModifyComponent implements OnInit {
   }
 
   onSubmit() {
-    this.request.email = this.passwordModify.get('email').value;
-    this.request.user = this.passwordModify.get('user').value;
+    this.request.email = this.validateForm.get('email').value;
+    this.request.username = this.validateForm.get('user').value;
     this.sendInformation(this.request);
   }
 
@@ -53,10 +54,10 @@ export class PasswordModifyComponent implements OnInit {
       this.loginService.savePassword(this.requestPass).subscribe( data => {
         if (parseInt(data.status, 10) === 0) {
           this.backResponse.message = data.message;
-          document.getElementById('modalRegisterButton').click();
+          document.getElementById('modalUpdatePasswordButton').click();
         } else {
           this.error = data.errorMessage;
-          document.getElementById('modalRoErrorButton').click();
+          document.getElementById('modalToErrorButton').click();
         }
       });
     }
@@ -65,16 +66,18 @@ export class PasswordModifyComponent implements OnInit {
   sendInformation(request: any) {
     this.loginService.validateEmail(request).subscribe( data => {
       if (parseInt(data.status, 10) === 0) {
+        this.requestPass.employeeCode = data.employeeCode;
         this.isContinue = true;
       } else {
         this.error = data.errorMessage;
-        document.getElementById('modalRoErrorButton').click();
+        document.getElementById('modalToErrorButton').click();
       }
     });
   }
 
   validatePassword(pass1: string, pass2: string) {
     if ((pass1 === pass2)) {
+      this.requestPass.password = this.passwordForm.get('password').value;
       this.equalsPass = true;
     } else {
       this.error = 'Las contraseñas deben de ser iguales.';

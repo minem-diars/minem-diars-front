@@ -23,6 +23,7 @@ import { ProgramVerifyComponent } from './components/program-verify/program-veri
 import { EmployeeRegisterComponent } from './components/employee-register/employee-register.component';
 import { PasswordModifyComponent } from './components/password-modify/password-modify.component';
 import { ProgramModifyComponent } from './components/program-modify/program-modify.component';
+import { TicketPurchaseConsultComponent } from './components/ticket-purchase-consult/ticket-purchase-consult.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { ProgramModifyComponent } from './components/program-modify/program-modi
     EmployeeRegisterComponent,
     PasswordModifyComponent,
     ProgramModifyComponent,
+    TicketPurchaseConsultComponent,
   ],
   imports: [
     BrowserModule,

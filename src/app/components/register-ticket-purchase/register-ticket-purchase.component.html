@@ -11,32 +11,32 @@
                 <div class="form-group col-md-4">
                     <label for="entidad_minera">&nbsp;</label>
                     <div class="myBut">
-                        <button type="submit " class="btn btn-secondary" [routerLink]="['/home/chronogram/consult']">Buscar programación</button>
+                        <button type="submit " class="btn btn-secondary" [routerLink]="['/home/program/consult']">Buscar programación</button>
                     </div>
                 </div>
             </div>
             <div class="form-row">
-                <div class="form-group col-md-3">
-                    <label for="entidad_minera">Entidad minera</label>
-                    <input type="text" class="form-control" id="entidad_minera" disabled="true" [value]="miningEnt">
-                </div>
-                <div class="form-group col-md-3">
+                <div class="form-group col-md-4">
                     <label for="comisionado">Comisionado</label>
                     <input type="text" class="form-control" id="comisionado" disabled="true" [value]="empFullName">
                 </div>
+                <div class="form-group col-md-4">
+                    <label for="entidad_minera">Entidad minera</label>
+                    <input type="text" class="form-control" id="entidad_minera" disabled="true" [value]="miningEnt">
+                </div>
             </div>
             <div class="form-row">
-                <div class="form-group col-md-3">
+                <div class="form-group col-md-4">
                     <label for="initialDate">Salida</label>
                     <input type="date" class="form-control" id="initialDate" formControlName="exit">
                 </div>
-                <div class="form-group col-md-3">
+                <div class="form-group col-md-4">
                     <label for="finalDate">Llegada</label>
                     <input type="date" class="form-control" id="finalDate" formControlName="arrival">
                 </div>
             </div>
             <div class="form-row">
-                <div class="form-group col-md-3">
+                <div class="form-group col-md-4">
                     <label for="airline">Aerolinea</label>
                     <select class="form-control" id="airline" formControlName="airline">
                         <option *ngFor="let airline of airlines" [value]="airline.code">{{airline.name}}</option>
@@ -47,26 +47,62 @@
             <div class="form-row">
                 <div class="form-group col-md-1">
                 </div>
-                <div class="form-group col-md-3">
-                    <button type="button" class="btn btn-danger" [disabled]="purchaseTicketRegister.valid">Registrar</button>
+                <div class="form-group col-md-4">
+                    <button type="submit" class="btn btn-danger" [disabled]="purchaseTicketRegister.invalid">Registrar</button>
                 </div>
                 <div class="form-group col-md-4">
-                    <button type="button" class="btn btn-danger" [disabled]="purchaseTicketRegister.valid">Cancelar</button>
+                    <button type="button" class="btn btn-danger" [routerLink]="['/home']">Cancelar</button>
                 </div>
             </div>
         </form>
     </div>
+</div>
 
-    <br>
-    <!-- <div *ngIf="isContinue">
+<button id="modalTicketPurchaseButton" type="button" [hidden]="true" class="btn btn-primary" data-toggle="modal" data-target="#modalTicketPurchase">
+        Modal de TicketPurchase
+    </button>
+<br>
+<button id="modalToErrorButton" type="button" [hidden]="true" class="btn btn-primary" data-toggle="modal" data-target="#modalToError">
+        Modal de Error
+    </button>
 
-        <button id="modalRegisterButton" type="button" [hidden]="true" class="btn btn-primary" data-toggle="modal" data-target="#modalRegister">
-                Modal de registro
-            </button>
-        <br>
-        <button id="modalToErrorButton" type="button" [hidden]="true" class="btn btn-primary" data-toggle="modal" data-target="#modalToError">
-                Modal de Error
-            </button>
-    </div> -->
+<!-- Modal to Register -->
+<div class="modal fade" id="modalTicketPurchase" tabindex="-1" role="dialog" aria-labelledby="modalTicketPurchaseTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Registrar pedido de compra de pasaje</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                {{backResponse.description}}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="validateWithModal()">Registrar otro pedido</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" routerLink="/home">Ir al home</button>
+            </div>
+        </div>
+    </div>
+</div>
 
+<!-- Modal to Error -->
+<div class="modal fade" id="modalToError" tabindex="-1" role="dialog" aria-labelledby="modalToErrorTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Alerta de error</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                {{error}}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" routerLink="/home">Ir al home</button>
+            </div>
+        </div>
+    </div>
 </div>

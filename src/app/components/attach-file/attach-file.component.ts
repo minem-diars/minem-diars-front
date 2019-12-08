@@ -20,6 +20,11 @@ export class AttachFileComponent implements OnInit {
   employeeName = '';
   miningName = '';
 
+  isEnable = true;
+
+  backResponse: any = {};
+  error = '';
+
   constructor(private route: ActivatedRoute,
               private programService: ProgramService,
               private attachFileService: AttachFileService) { }
@@ -35,6 +40,7 @@ export class AttachFileComponent implements OnInit {
   attachFiles(event: any) {
     console.log(event);
     this.filesUploaded = event;
+    this.isEnable = false;
   }
 
   validateNanValue(programCodeRoute: number) {
@@ -53,11 +59,21 @@ export class AttachFileComponent implements OnInit {
   }
 
   getDataTable(evt: any) {
+    let contador = 0;
     for (const index of evt) {
       const key: any = document.getElementById(index.name);
       this.attachFileService.uploadFile(this.programCodeRoute, key.value, index).subscribe( data => {
-        console.log(data);
+        if (parseInt(data.status, 10) === 1) {
+          contador = contador + 1;
+        }
       });
+    }
+    if (contador === 0) {
+      this.backResponse.description = 'Archivos adjuntados correctamente.';
+      document.getElementById('modalUploadFileButton').click();
+    } else {
+      this.error = 'Ocurrio un error al cargar algunos documentos.';
+      document.getElementById('modalToErrorButton').click();
     }
   }
 
