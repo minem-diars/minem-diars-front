@@ -76,16 +76,5 @@ export class AttachFileComponent implements OnInit {
       document.getElementById('modalToErrorButton').click();
     }
   }
-
-  downloadData() {
-    this.programService.testD(1).subscribe( data => {
-      console.log(data);
-    });
-  }
-
-  testD() {
-    const URL = 'http://localhost:8080/travel/file/v1/download/4/Pagos';
-    window.open(URL);
-  }
-
+  
 }

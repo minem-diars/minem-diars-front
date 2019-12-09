@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { ProgramService } from '../../services/program.service';
 import { FormGroup, FormControl } from '@angular/forms';
+import { ChangeRequestService } from '../../services/change-request.service';
 
 @Component({
-  selector: 'app-program-consult',
-  templateUrl: './program-consult.component.html',
-  styleUrls: ['./program-consult.component.css']
+  selector: 'app-change-request-consult',
+  templateUrl: './change-request-consult.component.html',
+  styleUrls: ['./change-request-consult.component.css']
 })
-export class ProgramConsultComponent implements OnInit {
+export class ChangeRequestConsultComponent implements OnInit {
 
   fRole: string;
 
@@ -16,12 +16,9 @@ export class ProgramConsultComponent implements OnInit {
   programs: any = [];
   employeeName = 'nombre de empleado';
 
-  varCPV: number;
-
-  constructor(private programService: ProgramService) { }
+  constructor(private changeRequestService: ChangeRequestService) { }
 
   ngOnInit() {
-    this.varCPV = parseInt(localStorage.getItem('tempCPV'), 10);
     this.fRole = localStorage.getItem('empRole');
     this.codeOfUser = new FormGroup({
       userCode: new FormControl('')
@@ -31,7 +28,7 @@ export class ProgramConsultComponent implements OnInit {
   findDataByCode() {
     const employeeCode = parseInt(this.codeOfUser.value.userCode, 10);
     if (!isNaN(employeeCode)) {
-      this.programService.consultPrograms(employeeCode, this.fRole, this.varCPV).subscribe( data => {
+      this.changeRequestService.consultChangeRequest(employeeCode).subscribe( data => {
         this.programs = data.programs;
         this.employeeName = data.employeeFullName;
       });

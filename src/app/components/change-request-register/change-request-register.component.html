@@ -1,7 +1,7 @@
 <app-navbar [role]="fRole"></app-navbar>
 <div class="container divFather">
     <div class="divSon">
-        <form novalidate (ngSubmit)="onSubmit()" [formGroup]="programUpdateForm">
+        <form novalidate (ngSubmit)="onSubmit()" [formGroup]="changeRequestForm">
 
             <div class="form-row">
                 <div class="form-group col-md-2">
@@ -11,7 +11,7 @@
                 <div class="form-group col-md-4">
                     <label for="entidad_minera">&nbsp;</label>
                     <div class="myBut">
-                        <button type="submit " class="btn btn-secondary" [routerLink]="['/home/change/consult']">Buscar</button>
+                        <button type="submit " class="btn btn-secondary" [routerLink]="['/home/program/acceptd/consult']">Buscar</button>
                     </div>
                 </div>
             </div>
@@ -28,18 +28,18 @@
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <label for="initialDate">Fecha de inicio</label>
-                    <input type="date" class="form-control" id="initialDate" formControlName="initialDate">
+                    <input type="text" class="form-control" id="initialDate" disabled="true" [value]="initialDate">
                 </div>
                 <div class="form-group col-md-4">
                     <label for="finalDate ">Fecha de fin</label>
-                    <input type="date" class="form-control" id="finalDate" formControlName="finalDate">
+                    <input type="text" class="form-control" id="finalDate" disabled="true" [value]="finalDate">
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-2">
                 </div>
                 <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="viatics" [checked]="viaticFlag===1" (change)="changeWithCheck($event)" formControlName="viaticFlag">
+                    <input type="checkbox" disabled="true" class="form-check-input" id="viatics" [checked]="viaticFlag===1">
                     <label class="form-check-label" for="viatics">Viaticos financiado por minera</label>
                 </div>
                 <div class="form-group col-md-4">
@@ -50,7 +50,7 @@
                 </div>
                 <div class="form-group col-md-2">
                     <label for="lodging">Hospedaje</label>
-                    <input type="text" class="form-control" id="lodging" formControlName="lodging">
+                    <input type="text" disabled="true" class="form-control" id="lodging" [value]="lodging">
                 </div>
             </div>
             <div class="form-row">
@@ -58,7 +58,7 @@
                 </div>
                 <div class="form-group col-md-2">
                     <label for="transport">Transporte</label>
-                    <input type="text" class="form-control" id="transport" formControlName="transport">
+                    <input type="text" disabled="true" class="form-control" id="transport" [value]="transport">
                 </div>
             </div>
             <div class="form-row">
@@ -66,7 +66,7 @@
                 </div>
                 <div class="form-group col-md-6">
                     <label for="description">Observaciones</label>
-                    <textarea class="form-control" rows="4" cols="54" name="description" disabled [value]="observations"></textarea>
+                    <textarea class="form-control" rows="4" cols="54" name="description" formControlName="observations"></textarea>
                 </div>
             </div>
 
@@ -74,7 +74,7 @@
                 <div class="form-group col-md-2">
                 </div>
                 <div class="form-group col-md-3">
-                    <button type="submit" class="btn btn-secondary" [disabled]="programUpdateForm.invalid">Continuar</button>
+                    <button type="submit" class="btn btn-secondary" [disabled]="changeRequestForm.invalid">Continuar</button>
                 </div>
                 <div class="form-group col-md-4">
                     <button type="button" class="btn btn-danger" routerLink="/home">Cancelar</button>
@@ -98,7 +98,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Actualizar programacion</h5>
+                <h5 class="modal-title" id="exampleModalLongTitle">Solicitud de modificacion de programacion</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>

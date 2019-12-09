@@ -16,30 +16,43 @@ import { EmployeeRegisterComponent } from './components/employee-register/employ
 import { PasswordModifyComponent } from './components/password-modify/password-modify.component';
 import { ProgramModifyComponent } from './components/program-modify/program-modify.component';
 import { TicketPurchaseConsultComponent } from './components/ticket-purchase-consult/ticket-purchase-consult.component';
+import { AttachFileConsultComponent } from './components/attach-file-consult/attach-file-consult.component';
+import { AttachFileVerifyComponent } from './components/attach-file-verify/attach-file-verify.component';
+import { ChangeRequestRegisterComponent } from './components/change-request-register/change-request-register.component';
+import { ProgramAcceptedConsultComponent } from './components/program-accepted-consult/program-accepted-consult.component';
+import { ChangeRequestConsultComponent } from './components/change-request-consult/change-request-consult.component';
 
 const routes: Routes = [
-  {path: '', component: LoginComponent},
-  {path: 'home', component: HomeComponent},
-  {path: 'login', component: LoginComponent},
-  {path: 'home/chronogram/register', component: ChronogramRegisterComponent},
-  {path: 'home/chronogram/consult', component: ChronogramConsultComponent},
-  {path: 'home/program/consult', component: ProgramConsultComponent},
-  {path: 'home/program/register', component: ProgramRegisterComponent},
-  {path: 'home/program/register/:chronogramCode', component: ProgramRegisterComponent},
-  {path: 'home/program/evaluate', component: ProgramEvaluateComponent},
-  {path: 'home/program/evaluate/:programCode', component: ProgramEvaluateComponent},
-  {path: 'home/livelihood/attach', component: AttachFileComponent},
-  {path: 'home/livelihood/attach/:programCode', component: AttachFileComponent},
-  {path: 'home/purchase/ticket/register', component: RegisterTicketPurchaseComponent},
-  {path: 'home/purchase/ticket/register/:programCode', component: RegisterTicketPurchaseComponent},
-  {path: 'home/purchase/ticket/evaluate', component: EvaluateTicketPurchaseComponent},
-  {path: 'home/purchase/ticket/evaluate/:ticketCode', component: EvaluateTicketPurchaseComponent},
-  {path: 'home/program/verify', component: ProgramVerifyComponent},
-  {path: 'home/program/verify/:programCode', component: ProgramVerifyComponent},
-  {path: 'home/employee/register', component: EmployeeRegisterComponent},
-  {path: 'home/login/password-modify', component: PasswordModifyComponent},
-  {path: 'home/program/modify', component: ProgramModifyComponent},
-  {path: 'home/purchase/ticket/consult', component: TicketPurchaseConsultComponent},
+  {path: '',                                            component: LoginComponent},
+  {path: 'home',                                        component: HomeComponent},
+  {path: 'login',                                       component: LoginComponent},
+  {path: 'home/chronogram/register',                    component: ChronogramRegisterComponent},
+  {path: 'home/chronogram/consult',                     component: ChronogramConsultComponent},
+  {path: 'home/program/consult',                        component: ProgramConsultComponent},
+  {path: 'home/program/register',                       component: ProgramRegisterComponent},
+  {path: 'home/program/register/:chronogramCode',       component: ProgramRegisterComponent},
+  {path: 'home/program/evaluate',                       component: ProgramEvaluateComponent},
+  {path: 'home/program/evaluate/:programCode',          component: ProgramEvaluateComponent},
+  {path: 'home/livelihood/attach',                      component: AttachFileComponent},
+  {path: 'home/livelihood/attach/:programCode',         component: AttachFileComponent},
+  {path: 'home/purchase/ticket/register',               component: RegisterTicketPurchaseComponent},
+  {path: 'home/purchase/ticket/register/:programCode',  component: RegisterTicketPurchaseComponent},
+  {path: 'home/purchase/ticket/evaluate',               component: EvaluateTicketPurchaseComponent},
+  {path: 'home/purchase/ticket/evaluate/:ticketCode',   component: EvaluateTicketPurchaseComponent},
+  {path: 'home/program/verify',                         component: ProgramVerifyComponent},
+  {path: 'home/program/verify/:programCode',            component: ProgramVerifyComponent},
+  {path: 'home/employee/register',                      component: EmployeeRegisterComponent},
+  {path: 'home/login/password-modify',                  component: PasswordModifyComponent},
+  {path: 'home/program/modify',                         component: ProgramModifyComponent},
+  {path: 'home/program/modify/:programCode',            component: ProgramModifyComponent},
+  {path: 'home/purchase/ticket/consult',                component: TicketPurchaseConsultComponent},
+  {path: 'home/livelihood/consult',                     component: AttachFileConsultComponent},
+  {path: 'home/livelihood/verify',                      component: AttachFileVerifyComponent},
+  {path: 'home/livelihood/verify/:programCode',         component: AttachFileVerifyComponent},
+  {path: 'home/change/register',                        component: ChangeRequestRegisterComponent},
+  {path: 'home/change/register/:programCode',           component: ChangeRequestRegisterComponent},
+  {path: 'home/program/acceptd/consult',                component: ProgramAcceptedConsultComponent},
+  {path: 'home/change/consult',                         component: ChangeRequestConsultComponent},
 
 ];
 

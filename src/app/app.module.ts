@@ -24,6 +24,11 @@ import { EmployeeRegisterComponent } from './components/employee-register/employ
 import { PasswordModifyComponent } from './components/password-modify/password-modify.component';
 import { ProgramModifyComponent } from './components/program-modify/program-modify.component';
 import { TicketPurchaseConsultComponent } from './components/ticket-purchase-consult/ticket-purchase-consult.component';
+import { AttachFileConsultComponent } from './components/attach-file-consult/attach-file-consult.component';
+import { AttachFileVerifyComponent } from './components/attach-file-verify/attach-file-verify.component';
+import { ProgramAcceptedConsultComponent } from './components/program-accepted-consult/program-accepted-consult.component';
+import { ChangeRequestRegisterComponent } from './components/change-request-register/change-request-register.component';
+import { ChangeRequestConsultComponent } from './components/change-request-consult/change-request-consult.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +52,11 @@ import { TicketPurchaseConsultComponent } from './components/ticket-purchase-con
     PasswordModifyComponent,
     ProgramModifyComponent,
     TicketPurchaseConsultComponent,
+    AttachFileConsultComponent,
+    AttachFileVerifyComponent,
+    ProgramAcceptedConsultComponent,
+    ChangeRequestRegisterComponent,
+    ChangeRequestConsultComponent,
   ],
   imports: [
     BrowserModule,

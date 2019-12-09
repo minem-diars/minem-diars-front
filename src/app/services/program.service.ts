@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 export class ProgramService {
 
   private envUrl = 'http://localhost:8080/travel/program/v1/';
+  private fileUrl = 'http://localhost:8080/travel/file/v1/';
 
   constructor(private http: HttpClient) { }
 
@@ -42,9 +43,35 @@ export class ProgramService {
     return this.http.get(registertUrl + programCode);
   }
 
-  public testD(id: any): Observable<any> {
-    const registertUrl = 'http://192.168.1.7:8080/travel/file/v1/download/';
-    return this.http.get(registertUrl + id);
+  /* Coonsultar programaciones para doc sustento */
+  public consultProgramsForFiles(programCode: number): Observable<any> {
+    const consultUrl = this.fileUrl + 'consult/';
+    return this.http.get(consultUrl + programCode);
+  }
+
+  /* Descargar archivo */
+  public downloadFile(programCode: number, fileName: string) {
+    const downloadtUrl = this.fileUrl + 'download/';
+    const URL = downloadtUrl + programCode + '/' + fileName;
+    window.open(URL);
+  }
+
+  /* Consultar programaciones aceptadas */
+  public consultAcceptedPrograms(dlogCode: number, empCode: number): Observable<any> {
+    const consultUrl = this.envUrl + 'consult/accepted/';
+    return this.http.get(consultUrl + '/' + dlogCode + '/' + empCode);
+  }
+
+  /* Consultar para Modificar programaciones */
+  public consultForUpdateProgram(programCode: number, flag: number): Observable<any> {
+    const consultUrl = this.envUrl + 'consult/update/';
+    return this.http.get(consultUrl + programCode + '/' + flag);
+  }
+
+  /* Actualizar programacion */
+  public postUpdateProgram(request: any): Observable<any> {
+    const consultUrl = this.envUrl + 'update/program';
+    return this.http.post(consultUrl, request);
   }
 
 }

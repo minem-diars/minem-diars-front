@@ -21,6 +21,7 @@ export class ProgramEvaluateComponent implements OnInit {
   request: any = {
     programCode: 0,
     role: '',
+    idUserDlog: 0,
     state: 0,
     derv_dg: 0,
     derv_ol: 0,
@@ -177,6 +178,7 @@ export class ProgramEvaluateComponent implements OnInit {
   reqDLOGace() {
     this.request.role = 'ROLE_DLOG';
     this.request.state = 1;
+    this.request.idUserDlog = parseInt(localStorage.getItem('empCode'), 10);
     this.request.derv_dg = 0;
     this.request.derv_ol = 1;
     this.request.state_dl = 1;
