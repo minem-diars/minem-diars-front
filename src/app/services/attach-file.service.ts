@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class AttachFileService {
 
-  private envUrl = 'http://192.168.1.7:8080/travel/file/v1/';
+  private envUrl = 'http://localhost:8080/travel/file/v1/';
 
   constructor(private http: HttpClient) { }
 

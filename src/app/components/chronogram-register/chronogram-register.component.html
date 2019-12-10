@@ -5,7 +5,7 @@
             <form novalidate (ngSubmit)="onSubmit()" [formGroup]="chronogramRegister">
 
                 <div class="form-row">
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-5">
                         <label for="days">Empleado</label>
                         <input type="text" disabled="true" class="form-control" id="employeeName" [placeholder]="employeeName">
                     </div>
@@ -40,7 +40,7 @@
                 </div>
 
                 <div class="myBut">
-                    <button type="submit" class="btn btn-primary" [disabled]="chronogramRegister.invalid">Continuar</button>
+                    <button type="submit" class="btn btn-secondary" [disabled]="chronogramRegister.invalid">Continuar</button>
                 </div>
             </form>
 
@@ -60,7 +60,7 @@
                     </div>
 
                     <div class="myBut">
-                        <button type="submit" class="btn btn-primary">{{buttonState}}</button>
+                        <button type="submit" class="btn btn-secondary">{{buttonState}}</button>
                     </div>
 
 

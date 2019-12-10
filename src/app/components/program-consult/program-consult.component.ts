@@ -33,7 +33,11 @@ export class ProgramConsultComponent implements OnInit {
     if (!isNaN(employeeCode)) {
       this.programService.consultPrograms(employeeCode, this.fRole, this.varCPV).subscribe( data => {
         this.programs = data.programs;
-        this.employeeName = data.employeeFullName;
+        if (data.employeeName !== '') {
+          this.employeeName = data.employeeName;
+        } else {
+          this.employeeName = data.employeeFullName;
+        }
       });
     }
   }

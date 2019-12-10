@@ -40,8 +40,8 @@ export class ProgramModifyComponent implements OnInit {
       initialDate: new FormControl('', Validators.required),
       finalDate: new FormControl('', Validators.required),
       viaticFlag: new FormControl(Validators.required),
-      lodging: new FormControl('', Validators.required),
-      transport: new FormControl('', Validators.required),
+      lodgingCost: new FormControl('', Validators.required),
+      transportCost: new FormControl('', Validators.required),
     });
   }
 
@@ -71,8 +71,8 @@ export class ProgramModifyComponent implements OnInit {
           this.programUpdateForm.get('initialDate').setValue(data.initialDate);
           this.programUpdateForm.get('finalDate').setValue(data.finalDate);
           this.programUpdateForm.get('viaticFlag').setValue(data.viaticFlag);
-          this.programUpdateForm.get('lodging').setValue(data.lodgingCost);
-          this.programUpdateForm.get('transport').setValue(data.transportCost);
+          this.programUpdateForm.get('lodgingCost').setValue(data.lodgingCost);
+          this.programUpdateForm.get('transportCost').setValue(data.transportCost);
           this.observations = data.observations;
           console.log(this.programUpdateForm.value);
         } else {
@@ -91,13 +91,13 @@ export class ProgramModifyComponent implements OnInit {
 
   changeWithCheck(event: any) {
     if (event.target.checked) {
-      this.programUpdateForm.get('lodging').setValue('');
-      this.programUpdateForm.get('transport').setValue('');
-      this.programUpdateForm.get('lodging').disable();
-      this.programUpdateForm.get('transport').disable();
+      this.programUpdateForm.get('lodgingCost').setValue('');
+      this.programUpdateForm.get('transportCost').setValue('');
+      this.programUpdateForm.get('lodgingCost').disable();
+      this.programUpdateForm.get('transportCost').disable();
     } else {
-      this.programUpdateForm.get('lodging').enable();
-      this.programUpdateForm.get('transport').enable();
+      this.programUpdateForm.get('lodgingCost').enable();
+      this.programUpdateForm.get('transportCost').enable();
     }
   }
 

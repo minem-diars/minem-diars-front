@@ -11,7 +11,7 @@
                 <div class="form-group col-md-4">
                     <label for="entidad_minera">&nbsp;</label>
                     <div class="myBut">
-                        <button type="submit " class="btn btn-primary" [routerLink]="['/home/chronogram/consult']">Buscar cronogramas</button>
+                        <button type="submit " class="btn btn-secondary" [routerLink]="['/home/chronogram/consult']">Buscar cronogramas</button>
                     </div>
                 </div>
             </div>
@@ -63,7 +63,7 @@
             </div>
 
             <div class="buttonCont">
-                <button type="submit" class="btn btn-primary" [disabled]="programRegister.invalid || chronogramCodeRoute === 0">Continuar</button>
+                <button type="submit" class="btn btn-secondary" [disabled]="programRegister.invalid || chronogramCodeRoute === 0">Continuar</button>
             </div>
         </form>
         <button id="modalRegisterButton" type="button" [hidden]="true" class="btn btn-primary" data-toggle="modal" data-target="#modalRegister">
