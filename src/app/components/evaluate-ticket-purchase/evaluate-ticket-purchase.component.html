@@ -10,7 +10,7 @@
                 <div class="form-group col-md-4">
                     <label for="entidad_minera">&nbsp;</label>
                     <div class="myBut">
-                        <button type="button" class="btn btn-secondary" [routerLink]="['/home/purchase/ticket/consult']">Buscar pedido</button>
+                        <button type="button" class="btn btn-secondary" [routerLink]="['/purchase/ticket/consult']">Buscar pedido</button>
                     </div>
                 </div>
             </div>
@@ -71,7 +71,7 @@
                 {{backResponse.message}}
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal" routerLink="/home/purchase/ticket/evaluate">Evaluar otro pedido</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" routerLink="/purchase/ticket/evaluate">Evaluar otro pedido</button>
                 <button type="button" class="btn btn-primary" data-dismiss="modal" routerLink="/home">Volver al home</button>
             </div>
         </div>
@@ -92,7 +92,7 @@
                 {{error}}
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal" routerLink="/home/purchase/ticket/evaluate">Cerrar</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" routerLink="/purchase/ticket/evaluate">Cerrar</button>
             </div>
         </div>
     </div>

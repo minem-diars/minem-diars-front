@@ -32,10 +32,10 @@
                 <td>{{program.miningEntity}}</td>
                 <td>{{program.viaticFlag | state:'v'}}</td>
                 <td>
-                    <input *ngIf="varCPV === 0" type="button" class="btn btn-danger" routerLink="/home/program/evaluate/{{program.programCode}}" value="Cargar">
-                    <input *ngIf="varCPV === 1" type="button" class="btn btn-danger" routerLink="/home/livelihood/attach/{{program.programCode}}" value="Cargar">
-                    <input *ngIf="varCPV === 2" type="button" class="btn btn-danger" routerLink="/home/purchase/ticket/register/{{program.programCode}}" value="Cargar">
-                    <input *ngIf="varCPV === 3" type="button" class="btn btn-danger" routerLink="/home/program/verify/{{program.programCode}}" value="Cargar">
+                    <input *ngIf="varCPV === 0" type="button" class="btn btn-danger" routerLink="/program/evaluate/{{program.programCode}}" value="Cargar">
+                    <input *ngIf="varCPV === 1" type="button" class="btn btn-danger" routerLink="/livelihood/attach/{{program.programCode}}" value="Cargar">
+                    <input *ngIf="varCPV === 2" type="button" class="btn btn-danger" routerLink="/purchase/ticket/register/{{program.programCode}}" value="Cargar">
+                    <input *ngIf="varCPV === 3" type="button" class="btn btn-danger" routerLink="/program/verify/{{program.programCode}}" value="Cargar">
                 </td>
             </tr>
         </tbody>
