@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class TicketService {
 
-  private envUrl = 'http://localhost:8080/travel/ticket/purchase/v1/';
+  private envUrl = environment.url_server + 'travel/ticket/purchase/v1/';
 
   constructor(private http: HttpClient) { }
 

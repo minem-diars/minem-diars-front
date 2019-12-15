@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ChronogramService {
 
-  private envUrl = 'http://localhost:8080/travel/chronogram/v1/';
+  private envUrl = environment.url_server + 'travel/chronogram/v1/';
 
   constructor(private http: HttpClient) { }
 
