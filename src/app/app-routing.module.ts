@@ -42,7 +42,7 @@ const routes: Routes = [
   {path: 'program/verify',                         component: ProgramVerifyComponent},
   {path: 'program/verify/:programCode',            component: ProgramVerifyComponent},
   {path: 'employee/register',                      component: EmployeeRegisterComponent},
-  {path: 'login/password-modify',                  component: PasswordModifyComponent},
+  {path: 'password-modify',                  component: PasswordModifyComponent},
   {path: 'program/modify',                         component: ProgramModifyComponent},
   {path: 'program/modify/:programCode',            component: ProgramModifyComponent},
   {path: 'purchase/ticket/consult',                component: TicketPurchaseConsultComponent},

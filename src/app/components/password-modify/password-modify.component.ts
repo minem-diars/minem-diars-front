@@ -11,8 +11,6 @@ import { LoginService } from '../../services/login.service';
 })
 export class PasswordModifyComponent implements OnInit {
 
-  fRole: string;
-
   validateForm: FormGroup;
   passwordForm: FormGroup;
   request: any = {
@@ -31,7 +29,6 @@ export class PasswordModifyComponent implements OnInit {
   constructor( private loginService: LoginService) { }
 
   ngOnInit() {
-    this.fRole = localStorage.getItem('empRole');
     this.validateForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       user: new FormControl('', Validators.required)
