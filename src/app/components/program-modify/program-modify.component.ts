@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProgramService } from '../../services/program.service';
 import { ChangeRequestService } from '../../services/change-request.service';
 
@@ -28,21 +28,34 @@ export class ProgramModifyComponent implements OnInit {
   error = '';
 
   constructor(private route: ActivatedRoute,
-              private programService: ProgramService) { }
+              private programService: ProgramService,
+              private router: Router) { }
 
   ngOnInit() {
     this.fRole = localStorage.getItem('empRole');
-    this.programCodeRoute = parseInt(this.route.snapshot.paramMap.get('programCode'), 10);
-    this.validateNanValue(this.programCodeRoute);
-    this.findProgramInfo(this.programCodeRoute);
-    this.programUpdateForm = new FormGroup({
-      programCode: new FormControl(this.programCodeRoute),
-      initialDate: new FormControl('', Validators.required),
-      finalDate: new FormControl('', Validators.required),
-      viaticFlag: new FormControl(Validators.required),
-      lodgingCost: new FormControl('', Validators.required),
-      transportCost: new FormControl('', Validators.required),
-    });
+    if (this.validateSession(this.fRole)) {
+      this.programCodeRoute = parseInt(this.route.snapshot.paramMap.get('programCode'), 10);
+      this.validateNanValue(this.programCodeRoute);
+      this.findProgramInfo(this.programCodeRoute);
+      this.programUpdateForm = new FormGroup({
+        programCode: new FormControl(this.programCodeRoute),
+        initialDate: new FormControl('', Validators.required),
+        finalDate: new FormControl('', Validators.required),
+        viaticFlag: new FormControl(Validators.required),
+        lodgingCost: new FormControl('', Validators.required),
+        transportCost: new FormControl('', Validators.required),
+      });
+    } else {
+      this.router.navigate(['/login']);
+    }
+  }
+
+  validateSession(role: string): boolean {
+    if (role === null) {
+      return false;
+    } else {
+      return true;
+    }
   }
 
   onSubmit() {

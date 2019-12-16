@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { TicketService } from '../../services/ticket.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-ticket-purchase-consult',
@@ -16,13 +17,26 @@ export class TicketPurchaseConsultComponent implements OnInit {
   tickets: any = [];
   employeeName = 'nombre de empleado';
 
-  constructor(private ticketService: TicketService) { }
+  constructor(private ticketService: TicketService,
+              private router: Router) { }
 
   ngOnInit() {
     this.fRole = localStorage.getItem('empRole');
-    this.codeOfUser = new FormGroup({
-      userCode: new FormControl('')
-    });
+    if (this.validateSession(this.fRole)) {
+      this.codeOfUser = new FormGroup({
+        userCode: new FormControl('')
+      });
+    } else {
+      this.router.navigate(['/login']);
+    }
+  }
+
+  validateSession(role: string): boolean {
+    if (role === null) {
+      return false;
+    } else {
+      return true;
+    }
   }
 
   findDataByCode() {

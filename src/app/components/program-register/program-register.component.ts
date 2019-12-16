@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ChronogramService } from 'src/app/services/chronogram.service';
 import { ProgramService } from 'src/app/services/program.service';
 
@@ -25,19 +25,32 @@ export class ProgramRegisterComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private programService: ProgramService,
-              private chronogramService: ChronogramService) { }
+              private chronogramService: ChronogramService,
+              private router: Router) { }
 
   ngOnInit() {
     this.fRole = localStorage.getItem('empRole');
-    this.chronogramCodeRoute = parseInt(this.route.snapshot.paramMap.get('chronogramCode'), 10);
-    this.validateNanValue(this.chronogramCodeRoute);
-    this.findChronogram(this.chronogramCodeRoute);
-    this.programRegister = new FormGroup({
-      chronogramCode: new FormControl(this.chronogramCodeRoute),
-      viaticFlag: new FormControl(),
-      lodgingCost: new FormControl('', Validators.required),
-      transportCost: new FormControl('', Validators.required)
-    });
+    if (this.validateSession(this.fRole)) {
+      this.chronogramCodeRoute = parseInt(this.route.snapshot.paramMap.get('chronogramCode'), 10);
+      this.validateNanValue(this.chronogramCodeRoute);
+      this.findChronogram(this.chronogramCodeRoute);
+      this.programRegister = new FormGroup({
+        chronogramCode: new FormControl(this.chronogramCodeRoute),
+        viaticFlag: new FormControl(),
+        lodgingCost: new FormControl('', Validators.required),
+        transportCost: new FormControl('', Validators.required)
+      });
+    } else {
+      this.router.navigate(['/login']);
+    }
+  }
+
+  validateSession(role: string): boolean {
+    if (role === null) {
+      return false;
+    } else {
+      return true;
+    }
   }
 
   validateNanValue(chronogramCodeRoute: number) {

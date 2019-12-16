@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { TicketService } from '../../services/ticket.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-evaluate-ticket-purchase',
@@ -30,15 +30,28 @@ export class EvaluateTicketPurchaseComponent implements OnInit {
   error = '';
 
   constructor(private route: ActivatedRoute,
-              private ticketService: TicketService) { }
+              private ticketService: TicketService,
+              private router: Router) { }
 
   ngOnInit() {
     this.fRole = localStorage.getItem('empRole');
-    this.ticketCodeRoute = parseInt(this.route.snapshot.paramMap.get('ticketCode'), 10);
-    this.validateNanValue(this.ticketCodeRoute);
-    this.findTicket(this.ticketCodeRoute);
-    this.purchaseTicketEvaluate = new FormGroup({
-    });
+    if (this.validateSession(this.fRole)) {
+      this.ticketCodeRoute = parseInt(this.route.snapshot.paramMap.get('ticketCode'), 10);
+      this.validateNanValue(this.ticketCodeRoute);
+      this.findTicket(this.ticketCodeRoute);
+      this.purchaseTicketEvaluate = new FormGroup({
+      });
+    } else {
+      this.router.navigate(['/login']);
+    }
+  }
+
+  validateSession(role: string): boolean {
+    if (role === null) {
+      return false;
+    } else {
+      return true;
+    }
   }
 
   approveProgram() {

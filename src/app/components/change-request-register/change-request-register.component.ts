@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProgramService } from '../../services/program.service';
 import { ChangeRequestService } from '../../services/change-request.service';
 
@@ -28,17 +28,30 @@ export class ChangeRequestRegisterComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private programService: ProgramService,
-              private changeRequestService: ChangeRequestService) { }
+              private changeRequestService: ChangeRequestService,
+              private router: Router) { }
 
   ngOnInit() {
     this.fRole = localStorage.getItem('empRole');
-    this.programCodeRoute = parseInt(this.route.snapshot.paramMap.get('programCode'), 10);
-    this.validateNanValue(this.programCodeRoute);
-    this.findProgramInfo(this.programCodeRoute);
-    this.changeRequestForm = new FormGroup({
-      programCode: new FormControl(this.programCodeRoute),
-      observations: new FormControl('', Validators.required)
-    });
+    if (this.validateSession(this.fRole)) {
+      this.programCodeRoute = parseInt(this.route.snapshot.paramMap.get('programCode'), 10);
+      this.validateNanValue(this.programCodeRoute);
+      this.findProgramInfo(this.programCodeRoute);
+      this.changeRequestForm = new FormGroup({
+        programCode: new FormControl(this.programCodeRoute),
+        observations: new FormControl('', Validators.required)
+      });
+    } else {
+      this.router.navigate(['/login']);
+    }
+  }
+
+  validateSession(role: string): boolean {
+    if (role === null) {
+      return false;
+    } else {
+      return true;
+    }
   }
 
   findProgramInfo(programCodeRoute: number) {

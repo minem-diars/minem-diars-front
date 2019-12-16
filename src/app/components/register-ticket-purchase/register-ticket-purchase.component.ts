@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { CommonService } from '../../services/common.service';
 import { ProgramService } from 'src/app/services/program.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TicketService } from '../../services/ticket.service';
 
 @Component({
@@ -36,20 +36,33 @@ export class RegisterTicketPurchaseComponent implements OnInit {
   constructor(private route: ActivatedRoute,
               private programService: ProgramService,
               private commonService: CommonService,
-              private ticketService: TicketService) { }
+              private ticketService: TicketService,
+              private router: Router) { }
 
   ngOnInit() {
-    localStorage.setItem('tempCPV', '2');
     this.fRole = localStorage.getItem('empRole');
-    this.programCodeRoute = parseInt(this.route.snapshot.paramMap.get('programCode'), 10);
-    this.validateNanValue(this.programCodeRoute);
-    this.obtainAirlines();
-    this.findProgramForTicketPurchase(this.programCodeRoute);
-    this.purchaseTicketRegister = new FormGroup({
-      exit: new FormControl('', Validators.required),
-      arrival: new FormControl('', Validators.required),
-      airline: new FormControl('', Validators.required)
-    });
+    if (this.validateSession(this.fRole)) {
+      localStorage.setItem('tempCPV', '2');
+      this.programCodeRoute = parseInt(this.route.snapshot.paramMap.get('programCode'), 10);
+      this.validateNanValue(this.programCodeRoute);
+      this.obtainAirlines();
+      this.findProgramForTicketPurchase(this.programCodeRoute);
+      this.purchaseTicketRegister = new FormGroup({
+        exit: new FormControl('', Validators.required),
+        arrival: new FormControl('', Validators.required),
+        airline: new FormControl('', Validators.required)
+      });
+    } else {
+      this.router.navigate(['/login']);
+    }
+  }
+
+  validateSession(role: string): boolean {
+    if (role === null) {
+      return false;
+    } else {
+      return true;
+    }
   }
 
   obtainAirlines() {

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { ProgramService } from '../../services/program.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AttachFileService } from 'src/app/services/attach-file.service';
 
 @Component({
@@ -27,14 +27,27 @@ export class AttachFileComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private programService: ProgramService,
-              private attachFileService: AttachFileService) { }
+              private attachFileService: AttachFileService,
+              private router: Router) { }
 
   ngOnInit() {
-    localStorage.setItem('tempCPV', '1');
     this.fRole = localStorage.getItem('empRole');
-    this.programCodeRoute = parseInt(this.route.snapshot.paramMap.get('programCode'), 10);
-    this.validateNanValue(this.programCodeRoute);
-    this.findProgramForAttachFile(this.programCodeRoute);
+    if (this.validateSession(this.fRole)) {
+      localStorage.setItem('tempCPV', '1');
+      this.programCodeRoute = parseInt(this.route.snapshot.paramMap.get('programCode'), 10);
+      this.validateNanValue(this.programCodeRoute);
+      this.findProgramForAttachFile(this.programCodeRoute);
+    } else {
+      this.router.navigate(['/login']);
+    }
+  }
+
+  validateSession(role: string): boolean {
+    if (role === null) {
+      return false;
+    } else {
+      return true;
+    }
   }
 
   attachFiles(event: any) {
@@ -76,5 +89,5 @@ export class AttachFileComponent implements OnInit {
       document.getElementById('modalToErrorButton').click();
     }
   }
-  
+
 }

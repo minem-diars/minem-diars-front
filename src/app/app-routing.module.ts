@@ -23,9 +23,9 @@ import { ProgramAcceptedConsultComponent } from './components/program-accepted-c
 import { ChangeRequestConsultComponent } from './components/change-request-consult/change-request-consult.component';
 
 const routes: Routes = [
-  {path: '',                                            component: LoginComponent},
-  {path: 'home',                                        component: HomeComponent},
-  {path: 'login',                                       component: LoginComponent},
+  {path: '',                                       component: LoginComponent},
+  {path: 'home',                                   component: HomeComponent},
+  {path: 'login',                                  component: LoginComponent},
   {path: 'chronogram/register',                    component: ChronogramRegisterComponent},
   {path: 'chronogram/consult',                     component: ChronogramConsultComponent},
   {path: 'program/consult',                        component: ProgramConsultComponent},

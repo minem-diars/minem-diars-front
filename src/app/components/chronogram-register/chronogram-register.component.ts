@@ -2,6 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CommonService } from '../../services/common.service';
 import { ChronogramService } from '../../services/chronogram.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-chronogram-register',
@@ -35,24 +36,37 @@ export class ChronogramRegisterComponent implements OnInit {
 
   constructor(
               private commonService: CommonService,
-              private chronogramService: ChronogramService) { }
+              private chronogramService: ChronogramService,
+              private router: Router) { }
 
   ngOnInit() {
     this.fRole = localStorage.getItem('empRole');
-    this.obtainCodeEmployee();
-    this.obtainMinings();
-    this.chronogramRegister = new FormGroup({
-      nameService: new FormControl('', Validators.required),
-      miningCode: new FormControl('', Validators.required),
-      initialDate: new FormControl('', Validators.required),
-      finalDate: new FormControl('', Validators.required),
-      days: new FormControl('', Validators.required)
-    });
+    if (this.validateSession(this.fRole)) {
+      this.obtainCodeEmployee();
+      this.obtainMinings();
+      this.chronogramRegister = new FormGroup({
+        nameService: new FormControl('', Validators.required),
+        miningCode: new FormControl('', Validators.required),
+        initialDate: new FormControl('', Validators.required),
+        finalDate: new FormControl('', Validators.required),
+        days: new FormControl('', Validators.required)
+      });
 
-    this.chronogramDatail = new FormGroup({
-      day: new FormControl(''),
-      activities: new FormControl('', Validators.required)
-    });
+      this.chronogramDatail = new FormGroup({
+        day: new FormControl(''),
+        activities: new FormControl('', Validators.required)
+      });
+    } else {
+      this.router.navigate(['/login']);
+    }
+  }
+
+  validateSession(role: string): boolean {
+    if (role === null) {
+      return false;
+    } else {
+      return true;
+    }
   }
 
   onSubmit() {

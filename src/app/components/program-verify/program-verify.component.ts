@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProgramService } from '../../services/program.service';
 
 @Component({
@@ -27,14 +27,27 @@ export class ProgramVerifyComponent implements OnInit {
   backResponse: any = {};
 
   constructor(private route: ActivatedRoute,
-              private programService: ProgramService) { }
+              private programService: ProgramService,
+              private router: Router) { }
 
   ngOnInit() {
     this.fRole = localStorage.getItem('empRole');
-    localStorage.setItem('tempCPV', '3');
-    this.programCodeRoute = parseInt(this.route.snapshot.paramMap.get('programCode'), 10);
-    this.validateNanValue(this.programCodeRoute);
-    this.findProgram(this.programCodeRoute);
+    if (this.validateSession(this.fRole)) {
+      localStorage.setItem('tempCPV', '3');
+      this.programCodeRoute = parseInt(this.route.snapshot.paramMap.get('programCode'), 10);
+      this.validateNanValue(this.programCodeRoute);
+      this.findProgram(this.programCodeRoute);
+    } else {
+      this.router.navigate(['/login']);
+    }
+  }
+
+  validateSession(role: string): boolean {
+    if (role === null) {
+      return false;
+    } else {
+      return true;
+    }
   }
 
   validateNanValue(programCodeRoute: number) {

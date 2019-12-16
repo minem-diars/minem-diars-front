@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProgramService } from '../../services/program.service';
 
 @Component({
@@ -32,17 +32,30 @@ export class ProgramEvaluateComponent implements OnInit {
   error = '';
   derivable = true;
   constructor(private route: ActivatedRoute,
-              private programService: ProgramService) { }
+              private programService: ProgramService,
+              private router: Router) { }
 
   ngOnInit() {
-    localStorage.setItem('tempCPV', '0');
     this.fRole = localStorage.getItem('empRole');
-    this.programCodeRoute = parseInt(this.route.snapshot.paramMap.get('programCode'), 10);
-    this.validateNanValue(this.programCodeRoute);
-    this.findProgram(this.programCodeRoute);
-    this.programEvaluate = new FormGroup({
-      programCode: new FormControl(this.programCodeRoute)
-    });
+    if (this.validateSession(this.fRole)) {
+      localStorage.setItem('tempCPV', '0');
+      this.programCodeRoute = parseInt(this.route.snapshot.paramMap.get('programCode'), 10);
+      this.validateNanValue(this.programCodeRoute);
+      this.findProgram(this.programCodeRoute);
+      this.programEvaluate = new FormGroup({
+        programCode: new FormControl(this.programCodeRoute)
+      });
+    } else {
+      this.router.navigate(['/login']);
+    }
+  }
+
+  validateSession(role: string): boolean {
+    if (role === null) {
+      return false;
+    } else {
+      return true;
+    }
   }
 
   onSubmit() {

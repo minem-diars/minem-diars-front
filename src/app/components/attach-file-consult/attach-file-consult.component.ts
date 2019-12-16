@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { ProgramService } from '../../services/program.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-attach-file-consult',
@@ -16,13 +17,26 @@ export class AttachFileConsultComponent implements OnInit {
   programs: any = [];
   employeeName = 'nombre de empleado';
 
-  constructor(private programService: ProgramService) { }
+  constructor(private programService: ProgramService,
+              private router: Router) { }
 
   ngOnInit() {
     this.fRole = localStorage.getItem('empRole');
-    this.codeOfUser = new FormGroup({
-      userCode: new FormControl('')
-    });
+    if (this.validateSession(this.fRole)) {
+      this.codeOfUser = new FormGroup({
+        userCode: new FormControl('')
+      });
+    } else {
+      this.router.navigate(['/login']);
+    }
+  }
+
+  validateSession(role: string): boolean {
+    if (role === null) {
+      return false;
+    } else {
+      return true;
+    }
   }
 
   findDataByCode() {

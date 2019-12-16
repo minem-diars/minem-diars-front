@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { ChangeRequestService } from '../../services/change-request.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-change-request-consult',
@@ -16,13 +17,26 @@ export class ChangeRequestConsultComponent implements OnInit {
   programs: any = [];
   employeeName = 'nombre de empleado';
 
-  constructor(private changeRequestService: ChangeRequestService) { }
+  constructor(private changeRequestService: ChangeRequestService,
+              private router: Router) { }
 
   ngOnInit() {
     this.fRole = localStorage.getItem('empRole');
-    this.codeOfUser = new FormGroup({
-      userCode: new FormControl('')
-    });
+    if (this.validateSession(this.fRole)) {
+      this.codeOfUser = new FormGroup({
+        userCode: new FormControl('')
+      });
+    } else {
+      this.router.navigate(['/login']);
+    }
+  }
+
+  validateSession(role: string): boolean {
+    if (role === null) {
+      return false;
+    } else {
+      return true;
+    }
   }
 
   findDataByCode() {

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { ChronogramService } from 'src/app/services/chronogram.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-chronogram-consult',
@@ -16,13 +17,26 @@ export class ChronogramConsultComponent implements OnInit {
   chronograms: any = [];
   employeeName = 'nombre de empleado';
 
-  constructor(private chronogramService: ChronogramService) { }
+  constructor(private chronogramService: ChronogramService,
+              private router: Router) { }
 
   ngOnInit() {
     this.fRole = localStorage.getItem('empRole');
-    this.codeOfUser = new FormGroup({
-      userCode: new FormControl('')
-    });
+    if (this.validateSession(this.fRole)) {
+      this.codeOfUser = new FormGroup({
+        userCode: new FormControl('')
+      });
+    } else {
+      this.router.navigate(['/login']);
+    }
+  }
+
+  validateSession(role: string): boolean {
+    if (role === null) {
+      return false;
+    } else {
+      return true;
+    }
   }
 
   findDataByCode() {
