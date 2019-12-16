@@ -53,9 +53,7 @@ export class LoginComponent implements OnInit {
   }
 
   cleanTemporalInformation() {
-    localStorage.removeItem('empCode');
-    localStorage.removeItem('empName');
-    localStorage.removeItem('empRole');
+    localStorage.clear();
   }
 
 }
