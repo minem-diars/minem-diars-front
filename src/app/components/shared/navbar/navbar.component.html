@@ -1,0 +1,104 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark bg-dark">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+
+            <!-- active -->
+            <li class="nav-item" routerLinkActive="active">
+                <a class="nav-link" [routerLink]="['/home']">Home</a>
+            </li>
+
+            <!-- <li class="nav-item">
+                <a class="nav-link" [routerLink]="['/mainmenu']">Menu Principal</a>
+            </li> -->
+            <li class="nav-item">
+                <a *ngIf="role == 'ROLE_ASYS'" class="nav-link" [routerLink]="['/program/modify']">Modificar programación</a>
+            </li>
+            <li class="nav-item">
+                <a *ngIf="role == 'ROLE_ASYS'" class="nav-link" [routerLink]="['/employee/register']">Registrar empleado</a>
+            </li>
+            <li class="nav-item">
+                <a *ngIf="role == 'ROLE_USER'" class="nav-link" [routerLink]="['/chronogram/register']">Registrar cronograma de viaje</a>
+            </li>
+            <li class="nav-item">
+                <a *ngIf="role == 'ROLE_DLOG'" class="nav-link" [routerLink]="['/change/register']">Registrar solicitud de cambio de programación</a>
+            </li>
+            <li class="nav-item">
+                <a *ngIf="role == 'ROLE_ENOF'" class="nav-link" [routerLink]="['/livelihood/verify']">Verificar documento de sustento</a>
+            </li>
+            <li class="nav-item">
+                <a *ngIf="role == 'ROLE_COAD'" class="nav-link" [routerLink]="['/program/register']">Registrar programación de viaje</a>
+            </li>
+            <li class="nav-item">
+                <a *ngIf="role == 'ROLE_COAD'" class="nav-link" [routerLink]="['/livelihood/attach']">Registrar documento de sustento</a>
+            </li>
+            <li class="nav-item">
+                <a *ngIf="role == 'ROLE_COAD'" class="nav-link" [routerLink]="['/purchase/ticket/register']">Registrar pedido compra de pasaje</a>
+            </li>
+            <li class="nav-item">
+                <a *ngIf="role == 'ROLE_DGFM' || role == 'ROLE_VICE' || role == 'ROLE_DLOG'" class="nav-link" [routerLink]="['/program/evaluate']">Evaluar programación</a>
+            </li>
+            <li class="nav-item">
+                <a *ngIf="role == 'ROLE_DLOG'" class="nav-link" [routerLink]="['/purchase/ticket/evaluate']">Evaluar pedido de compra de pasaje</a>
+            </li>
+            <li class="nav-item">
+                <a *ngIf="role == 'ROLE_OLOG'" class="nav-link" [routerLink]="['/program/verify']">Verificar programacion de viaje</a>
+            </li>
+            <li *ngIf="role == 'ROLE_DEV'" class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Consultas
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" [routerLink]="['/chronogram/consult']">Consultar cronograma de viaje</a>
+                    <a class="dropdown-item" [routerLink]="['/program/consult']">Consultar programación de viaje</a>
+                    <a class="dropdown-item" [routerLink]="['/livelihood/consult']">Consultar documento de sustento</a>
+                </div>
+            </li>
+            <li *ngIf="role == 'ROLE_DEV'" class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Registros
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" [routerLink]="['/chronogram/register']">Registrar cronograma de viaje</a>
+                    <a class="dropdown-item" [routerLink]="['/program/register']">Registrar programación de viaje</a>
+                    <a class="dropdown-item" [routerLink]="['/livelihood/attach']">Registrar documento de sustento</a>
+                    <a class="dropdown-item" [routerLink]="['/purchase/ticket/register']">Registrar pedido compra de pasaje</a>
+                    <a class="dropdown-item" [routerLink]="['/employee/register']">Registrar empleado</a>
+                </div>
+            </li>
+            <li *ngIf="role == 'ROLE_DEV'" class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Evaluaciones
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" [routerLink]="['/program/evaluate']">Evaluar programación</a>
+                    <a class="dropdown-item" [routerLink]="['/purchase/ticket/evaluate']">Evaluar pedido de compra de pasaje</a>
+                </div>
+            </li>
+            <li *ngIf="role == 'ROLE_DEV'" class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Verificar
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" [routerLink]="['/program/verify']">Verificar programacion de viaje</a>
+                </div>
+            </li>
+            <li *ngIf="role == 'ROLE_DEV'" class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Seguridad
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" [routerLink]="['/login/password-modify']">Modificar contraseña</a>
+                    <a class="dropdown-item" [routerLink]="['/program/modify']">Modificar programacion</a>
+                </div>
+            </li>
+
+        </ul>
+        <span class="navbar-nav">
+            <a class="nav-link" [routerLink]="['/login']">Logout</a>
+        </span>
+    </div>
+</nav>
