@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.fRole = localStorage.getItem('empRole');
     if (this.validateSession(this.fRole)) {
-      this.message = localStorage.getItem('empMessage');
+      this.message = localStorage.getItem('empName');
     } else {
       this.router.navigate(['/login']);
     }

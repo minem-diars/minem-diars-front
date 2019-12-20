@@ -49,7 +49,6 @@ export class LoginComponent implements OnInit {
     localStorage.setItem('empCode', data.employeeCode);
     localStorage.setItem('empName', data.employeeFullName);
     localStorage.setItem('empRole', data.userRol);
-    localStorage.setItem('empMessage', data.description);
   }
 
   cleanTemporalInformation() {
