@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { ProgramService } from '../../services/program.service';
 import { Router } from '@angular/router';
+import { TokenStorageService } from '../../services/token-storage.service';
 
 @Component({
   selector: 'app-program-accepted-consult',
@@ -18,30 +19,18 @@ export class ProgramAcceptedConsultComponent implements OnInit {
   employeeName = 'nombre de empleado';
 
   constructor(private programService: ProgramService,
-              private router: Router) { }
+              private tokenStorage: TokenStorageService) { }
 
   ngOnInit() {
-    this.fRole = localStorage.getItem('empRole');
-    if (this.validateSession(this.fRole)) {
-      this.codeOfUser = new FormGroup({
-        userCode: new FormControl('')
-      });
-    } else {
-      this.router.navigate(['/login']);
-    }
-  }
-
-  validateSession(role: string): boolean {
-    if (role === null) {
-      return false;
-    } else {
-      return true;
-    }
+    this.fRole = this.tokenStorage.getRole();
+    this.codeOfUser = new FormGroup({
+      userCode: new FormControl('')
+    });
   }
 
   findDataByCode() {
     const employeeCode = parseInt(this.codeOfUser.value.userCode, 10);
-    const empCode = parseInt(localStorage.getItem('empCode'), 10);
+    const empCode = parseInt(this.tokenStorage.getUsercode(), 10);
     if (!isNaN(employeeCode)) {
       this.programService.consultAcceptedPrograms(empCode, employeeCode).subscribe( data => {
         this.programs = data.programs;

@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { LoginService } from 'src/app/services/login.service';
 
-import { Router } from '@angular/router';
+import { AuthLoginInfo } from 'src/app/classes/login-info';
+import { TokenStorageService } from '../../services/token-storage.service';
 
 @Component({
   selector: 'app-login',
@@ -11,14 +12,20 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
+  isLoggedIn = false;
+  isLoginFailed = false;
+  role: string;
+
   login: FormGroup;
   response: any;
 
   backResponse: any = {};
   error = '';
 
+  private loginInfo: AuthLoginInfo;
+
   constructor(private loginService: LoginService,
-              private router: Router) { }
+              private tokenStorage: TokenStorageService) { }
 
   ngOnInit() {
     this.cleanTemporalInformation();
@@ -29,30 +36,27 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    this.loginService.login(this.login.value).subscribe(data => {
-      this.viewMainMenu(data);
-    });
-  }
+    this.loginInfo = new AuthLoginInfo(this.login.value.username, this.login.value.password);
+    this.loginService.login(this.loginInfo).subscribe(
+      data => {
+        this.tokenStorage.saveToken(data.token);
+        this.tokenStorage.saveUsername(data.employeeFullName);
+        this.tokenStorage.saveUsercode(data.employeeCode);
+        this.tokenStorage.saveRole(data.userRol);
 
-  viewMainMenu(data: any) {
-    if (parseInt(data.status, 10) === 0) {
-      this.saveTemporalInformation(data);
-      this.backResponse.description = data.description;
-      document.getElementById('modalLoginButton').click();
-    } else {
-      this.error = data.errorMessage;
-      document.getElementById('modalToErrorButton').click();
-    }
-  }
-
-  saveTemporalInformation(data: any) {
-    localStorage.setItem('empCode', data.employeeCode);
-    localStorage.setItem('empName', data.employeeFullName);
-    localStorage.setItem('empRole', data.userRol);
+        this.backResponse.description = 'Logueado correctamente.';
+        document.getElementById('modalLoginButton').click();
+      },
+      error => {
+        console.log(error);
+        this.error = error.error.message;
+        document.getElementById('modalToErrorButton').click();
+      }
+    );
   }
 
   cleanTemporalInformation() {
-    localStorage.clear();
+    this.tokenStorage.signOut();
   }
 
 }

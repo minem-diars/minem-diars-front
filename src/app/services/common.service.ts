@@ -30,4 +30,10 @@ export class CommonService {
     return this.http.get(consultUrl);
   }
 
+  /* Validar token */
+  public validateToken(): Observable<any> {
+    const consultUrl = this.envUrl + 'validate/token';
+    return this.http.get(consultUrl);
+  }
+
 }

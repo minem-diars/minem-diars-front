@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { TicketService } from '../../services/ticket.service';
-import { Router } from '@angular/router';
+import { TokenStorageService } from '../../services/token-storage.service';
 
 @Component({
   selector: 'app-ticket-purchase-consult',
@@ -18,25 +18,13 @@ export class TicketPurchaseConsultComponent implements OnInit {
   employeeName = 'nombre de empleado';
 
   constructor(private ticketService: TicketService,
-              private router: Router) { }
+              private tokenStorage: TokenStorageService) { }
 
   ngOnInit() {
-    this.fRole = localStorage.getItem('empRole');
-    if (this.validateSession(this.fRole)) {
-      this.codeOfUser = new FormGroup({
-        userCode: new FormControl('')
-      });
-    } else {
-      this.router.navigate(['/login']);
-    }
-  }
-
-  validateSession(role: string): boolean {
-    if (role === null) {
-      return false;
-    } else {
-      return true;
-    }
+    this.fRole = this.tokenStorage.getRole();
+    this.codeOfUser = new FormGroup({
+      userCode: new FormControl('')
+    });
   }
 
   findDataByCode() {
