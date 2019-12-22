@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
 })
 export class EmployeeService {
 
-  private envUrl = environment.url_server + 'travel/employee/v1/';
+  private envUrl = environment.url_server + 'api/auth/';
 
   constructor(private http: HttpClient) { }
 

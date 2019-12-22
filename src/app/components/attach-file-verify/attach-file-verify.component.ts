@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { ProgramService } from '../../services/program.service';
+import { TokenStorageService } from '../../services/token-storage.service';
 
 @Component({
   selector: 'app-attach-file-verify',
@@ -25,25 +26,14 @@ export class AttachFileVerifyComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private programService: ProgramService,
-              private router: Router) { }
+              private tokenStorage: TokenStorageService) { }
 
   ngOnInit() {
-    this.fRole = localStorage.getItem('empRole');
-    if (this.validateSession(this.fRole)) {
-      this.programCodeRoute = parseInt(this.route.snapshot.paramMap.get('programCode'), 10);
-      this.validateNanValue(this.programCodeRoute);
-      this.findProgramForAttachFile(this.programCodeRoute);
-    } else {
-      this.router.navigate(['/login']);
-    }
-  }
+    this.fRole = this.tokenStorage.getRole();
+    this.programCodeRoute = parseInt(this.route.snapshot.paramMap.get('programCode'), 10);
+    this.validateNanValue(this.programCodeRoute);
+    this.findProgramForAttachFile(this.programCodeRoute);
 
-  validateSession(role: string): boolean {
-    if (role === null) {
-      return false;
-    } else {
-      return true;
-    }
   }
 
   validateNanValue(programCodeRoute: number) {

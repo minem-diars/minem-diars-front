@@ -2,7 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CommonService } from '../../services/common.service';
 import { ChronogramService } from '../../services/chronogram.service';
-import { Router } from '@angular/router';
+import { TokenStorageService } from '../../services/token-storage.service';
 
 @Component({
   selector: 'app-chronogram-register',
@@ -37,36 +37,24 @@ export class ChronogramRegisterComponent implements OnInit {
   constructor(
               private commonService: CommonService,
               private chronogramService: ChronogramService,
-              private router: Router) { }
+              private tokenService: TokenStorageService) { }
 
   ngOnInit() {
-    this.fRole = localStorage.getItem('empRole');
-    if (this.validateSession(this.fRole)) {
-      this.obtainCodeEmployee();
-      this.obtainMinings();
-      this.chronogramRegister = new FormGroup({
-        nameService: new FormControl('', Validators.required),
-        miningCode: new FormControl('', Validators.required),
-        initialDate: new FormControl('', Validators.required),
-        finalDate: new FormControl('', Validators.required),
-        days: new FormControl('', Validators.required)
-      });
+    this.fRole = this.tokenService.getRole();
+    this.obtainCodeEmployee();
+    this.obtainMinings();
 
-      this.chronogramDatail = new FormGroup({
-        day: new FormControl(''),
-        activities: new FormControl('', Validators.required)
-      });
-    } else {
-      this.router.navigate(['/login']);
-    }
-  }
-
-  validateSession(role: string): boolean {
-    if (role === null) {
-      return false;
-    } else {
-      return true;
-    }
+    this.chronogramDatail = new FormGroup({
+      day: new FormControl(''),
+      activities: new FormControl('', Validators.required)
+    });
+    this.chronogramRegister = new FormGroup({
+      nameService: new FormControl('', Validators.required),
+      miningCode: new FormControl('', Validators.required),
+      initialDate: new FormControl('', Validators.required),
+      finalDate: new FormControl('', Validators.required),
+      days: new FormControl('', Validators.required)
+    });
   }
 
   onSubmit() {
@@ -97,8 +85,8 @@ export class ChronogramRegisterComponent implements OnInit {
   }
 
   obtainCodeEmployee() {
-    this.employeeName = localStorage.getItem('empName');
-    this.request.commissioner.employeeCode =  localStorage.getItem('empCode');
+    this.employeeName = this.tokenService.getUsername();
+    this.request.commissioner.employeeCode =  this.tokenService.getUsercode();
   }
 
   validateDays(days: number, day: number) {

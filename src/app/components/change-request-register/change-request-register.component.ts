@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { ProgramService } from '../../services/program.service';
 import { ChangeRequestService } from '../../services/change-request.service';
+import { TokenStorageService } from '../../services/token-storage.service';
 
 @Component({
   selector: 'app-change-request-register',
@@ -29,29 +30,17 @@ export class ChangeRequestRegisterComponent implements OnInit {
   constructor(private route: ActivatedRoute,
               private programService: ProgramService,
               private changeRequestService: ChangeRequestService,
-              private router: Router) { }
+              private tokenStorage: TokenStorageService) { }
 
   ngOnInit() {
-    this.fRole = localStorage.getItem('empRole');
-    if (this.validateSession(this.fRole)) {
-      this.programCodeRoute = parseInt(this.route.snapshot.paramMap.get('programCode'), 10);
-      this.validateNanValue(this.programCodeRoute);
-      this.findProgramInfo(this.programCodeRoute);
-      this.changeRequestForm = new FormGroup({
-        programCode: new FormControl(this.programCodeRoute),
-        observations: new FormControl('', Validators.required)
-      });
-    } else {
-      this.router.navigate(['/login']);
-    }
-  }
-
-  validateSession(role: string): boolean {
-    if (role === null) {
-      return false;
-    } else {
-      return true;
-    }
+    this.fRole = this.tokenStorage.getRole();
+    this.programCodeRoute = parseInt(this.route.snapshot.paramMap.get('programCode'), 10);
+    this.validateNanValue(this.programCodeRoute);
+    this.findProgramInfo(this.programCodeRoute);
+    this.changeRequestForm = new FormGroup({
+      programCode: new FormControl(this.programCodeRoute),
+      observations: new FormControl('', Validators.required)
+    });
   }
 
   findProgramInfo(programCodeRoute: number) {

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { TicketService } from '../../services/ticket.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
+import { TokenStorageService } from '../../services/token-storage.service';
 
 @Component({
   selector: 'app-evaluate-ticket-purchase',
@@ -31,27 +32,15 @@ export class EvaluateTicketPurchaseComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private ticketService: TicketService,
-              private router: Router) { }
+              private tokenStorage: TokenStorageService) { }
 
   ngOnInit() {
-    this.fRole = localStorage.getItem('empRole');
-    if (this.validateSession(this.fRole)) {
-      this.ticketCodeRoute = parseInt(this.route.snapshot.paramMap.get('ticketCode'), 10);
-      this.validateNanValue(this.ticketCodeRoute);
-      this.findTicket(this.ticketCodeRoute);
-      this.purchaseTicketEvaluate = new FormGroup({
+    this.fRole = this.tokenStorage.getRole();
+    this.ticketCodeRoute = parseInt(this.route.snapshot.paramMap.get('ticketCode'), 10);
+    this.validateNanValue(this.ticketCodeRoute);
+    this.findTicket(this.ticketCodeRoute);
+    this.purchaseTicketEvaluate = new FormGroup({
       });
-    } else {
-      this.router.navigate(['/login']);
-    }
-  }
-
-  validateSession(role: string): boolean {
-    if (role === null) {
-      return false;
-    } else {
-      return true;
-    }
   }
 
   approveProgram() {
