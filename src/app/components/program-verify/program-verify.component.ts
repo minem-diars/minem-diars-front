@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { ProgramService } from '../../services/program.service';
+import { TokenStorageService } from '../../services/token-storage.service';
 
 @Component({
   selector: 'app-program-verify',
@@ -28,26 +29,14 @@ export class ProgramVerifyComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private programService: ProgramService,
-              private router: Router) { }
+              private tokenStorage: TokenStorageService) { }
 
   ngOnInit() {
-    this.fRole = localStorage.getItem('empRole');
-    if (this.validateSession(this.fRole)) {
-      localStorage.setItem('tempCPV', '3');
-      this.programCodeRoute = parseInt(this.route.snapshot.paramMap.get('programCode'), 10);
-      this.validateNanValue(this.programCodeRoute);
-      this.findProgram(this.programCodeRoute);
-    } else {
-      this.router.navigate(['/login']);
-    }
-  }
-
-  validateSession(role: string): boolean {
-    if (role === null) {
-      return false;
-    } else {
-      return true;
-    }
+    this.fRole = this.tokenStorage.getRole();
+    localStorage.setItem('tempCPV', '3');
+    this.programCodeRoute = parseInt(this.route.snapshot.paramMap.get('programCode'), 10);
+    this.validateNanValue(this.programCodeRoute);
+    this.findProgram(this.programCodeRoute);
   }
 
   validateNanValue(programCodeRoute: number) {

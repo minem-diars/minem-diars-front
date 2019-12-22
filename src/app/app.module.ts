@@ -29,6 +29,7 @@ import { AttachFileVerifyComponent } from './components/attach-file-verify/attac
 import { ProgramAcceptedConsultComponent } from './components/program-accepted-consult/program-accepted-consult.component';
 import { ChangeRequestRegisterComponent } from './components/change-request-register/change-request-register.component';
 import { ChangeRequestConsultComponent } from './components/change-request-consult/change-request-consult.component';
+import { httpInterceptorProviders } from './services/auth-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,7 @@ import { ChangeRequestConsultComponent } from './components/change-request-consu
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,7 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { CommonService } from '../../services/common.service';
-import { ChronogramService } from '../../services/chronogram.service';
 import { LoginService } from '../../services/login.service';
 
 @Component({

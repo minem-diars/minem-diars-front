@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { ChronogramService } from 'src/app/services/chronogram.service';
-import { Router } from '@angular/router';
+import { TokenStorageService } from '../../services/token-storage.service';
 
 @Component({
   selector: 'app-chronogram-consult',
@@ -18,25 +18,13 @@ export class ChronogramConsultComponent implements OnInit {
   employeeName = 'nombre de empleado';
 
   constructor(private chronogramService: ChronogramService,
-              private router: Router) { }
+              private tokenStorage: TokenStorageService) { }
 
   ngOnInit() {
-    this.fRole = localStorage.getItem('empRole');
-    if (this.validateSession(this.fRole)) {
-      this.codeOfUser = new FormGroup({
-        userCode: new FormControl('')
+    this.fRole = this.tokenStorage.getRole();
+    this.codeOfUser = new FormGroup({
+      userCode: new FormControl('')
       });
-    } else {
-      this.router.navigate(['/login']);
-    }
-  }
-
-  validateSession(role: string): boolean {
-    if (role === null) {
-      return false;
-    } else {
-      return true;
-    }
   }
 
   findDataByCode() {
