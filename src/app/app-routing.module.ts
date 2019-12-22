@@ -43,7 +43,7 @@ const routes: Routes = [
   {path: 'program/verify',                         component: ProgramVerifyComponent,            canActivate: [CanActivatedIsLoggedGuard]},
   {path: 'program/verify/:programCode',            component: ProgramVerifyComponent,            canActivate: [CanActivatedIsLoggedGuard]},
   {path: 'employee/register',                      component: EmployeeRegisterComponent,         canActivate: [CanActivatedIsLoggedGuard]},
-  {path: 'password-modify',                        component: PasswordModifyComponent,           canActivate: [CanActivatedIsLoggedGuard]},
+  {path: 'password-modify',                        component: PasswordModifyComponent},
   {path: 'program/modify',                         component: ProgramModifyComponent,            canActivate: [CanActivatedIsLoggedGuard]},
   {path: 'program/modify/:programCode',            component: ProgramModifyComponent,            canActivate: [CanActivatedIsLoggedGuard]},
   {path: 'purchase/ticket/consult',                component: TicketPurchaseConsultComponent,    canActivate: [CanActivatedIsLoggedGuard]},

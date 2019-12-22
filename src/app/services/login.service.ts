@@ -27,13 +27,13 @@ export class LoginService {
 
   /* Validar email para modificar contraseña */
   public validateEmail(data: any): Observable<any> {
-    const envUrl = this.loginUrl + 'validateInfo';
+    const envUrl = this.authUrl + 'validateInfo';
     return this.http.post(envUrl, data);
   }
 
   /* Guardar nueva contraseña */
   public savePassword(data: any): Observable<any> {
-    const envUrl = this.loginUrl + 'updatePassword';
+    const envUrl = this.authUrl + 'updatePassword';
     return this.http.post(envUrl, data);
   }
 }
